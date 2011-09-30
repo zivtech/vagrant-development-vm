@@ -5,6 +5,10 @@ Vagrant::Config.run do |config|
   config.vm.provision :puppet, :module_path => "puppet/modules", :module_path => "puppet/modules"
   config.vm.host_name = "DevVM"
 
+  config.vm.customize do |vm|
+    vm.memory_size = 1024
+  end
+
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
