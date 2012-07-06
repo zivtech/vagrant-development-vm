@@ -1,3 +1,15 @@
 [submodule "puppet"]
 	path = puppet
 	url = git@zivtech.unfuddle.com:zivtech/puppet.git
+[submodule "puppet-modules/webadmin"]
+	path = puppet-modules/webadmin
+	url = https://github.com/zivtech/puppet-webadmin.git
+[submodule "puppet-modules/php53"]
+	path = puppet-modules/php53
+	url = https://github.com/zivtech/puppet-php53.git
+[submodule "puppet-modules/mysql5"]
+	path = puppet-modules/mysql5
+	url = https://github.com/zivtech/puppet-mysql5.git
+[submodule "puppet-modules/puppet-vcsrepo"]
+	path = puppet-modules/puppet-vcsrepo
+	url = https://github.com/bruce/puppet-vcsrepo.git
