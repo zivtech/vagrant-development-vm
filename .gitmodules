@@ -13,3 +13,6 @@
 [submodule "puppet-modules/puppet-vcsrepo"]
 	path = puppet-modules/puppet-vcsrepo
 	url = https://github.com/bruce/puppet-vcsrepo.git
+[submodule "puppet-modules/solr"]
+	path = puppet-modules/solr
+	url = https://github.com/zivtech/puppet-drupal-solr.git
