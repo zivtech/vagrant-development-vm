@@ -10,17 +10,54 @@ class {
 }
 
 class vagrantvm {
-  $mysqlpassword = ''
-  $rootpassword = $webadminpassword
-  $backuppassword = $webadminpassword
-  include zivtechbase
+  $user = 'vagrant'
+  $group = 'vagrant'
+
+  class { 'webadmin':
+    webadminuser => $user,
+    webadmingroup => $group,
+  }
+
+  # This lovely little hack of instantiating the class
+  # we extend before the extending class allows us to get
+  # our parameters into it.  Otherwise the parent class does
+  # not receive them.
+  class { "Php53":
+    webadminuser => $user,
+    webadmingroup => $group,
+    require => Class['webadmin'],
+  }
+
+  class { "Php53::Dev":
+    webadminuser => $user,
+    webadmingroup => $group,
+    require => Class['webadmin'],
+  }
+
+
+  # This lovely little hack of instantiating the class
+  # we extend before the extending class allows us to get
+  # our parameters into it.  Otherwise the parent class does
+  # not receive them.
+  class { 'Mysql5':
+    mysqlpassword => '',
+    webadminuser => $user,
+    webadmingroup => $group,
+  }
+
+  class { 'Mysql5::Dev':
+    mysqlpassword => '',
+    webadminuser => $user,
+    webadmingroup => $group,
+  }
+
+  user { "www-data":
+    groups => ['dialout']
+  }
+
   include stylomatic
   include solr
-  include php53-dev
-  class { 'mysql5':
-    mysqlpassword => $mysqlpassword
-  }
 }
 
-include setup
+include vagrantsetup
 include vagrantvm
