@@ -57,6 +57,8 @@ class vagrantvm {
 
   include stylomatic
   include solr
+  include drush
+  include drushfetcher
 }
 
 include vagrantsetup
