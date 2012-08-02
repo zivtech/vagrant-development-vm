@@ -31,7 +31,7 @@ class vagrantvm {
   class { "Php53::Dev":
     webadminuser => $user,
     webadmingroup => $group,
-    require => Class['webadmin'],
+    require => Class['webadmin', 'Php53'],
   }
 
 
@@ -49,6 +49,7 @@ class vagrantvm {
     mysqlpassword => '',
     webadminuser => $user,
     webadmingroup => $group,
+    require => Class['webadmin', 'Mysql5'],
   }
 
   user { "www-data":
