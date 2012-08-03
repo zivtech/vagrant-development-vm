@@ -18,12 +18,28 @@ class drush {
   }
 
   file { "/usr/local/bin/drush":
-    require => Vcsrepo["/var/lib/drush"],
+    require => [Vcsrepo["/var/lib/drush"], File["/var/lib/drush/lib/Console_Table-1.1.3"]],
     ensure => link,
     target => "/var/lib/drush/drush",
+    owner => 'root',
+    group => 'root',
+    mode => 755,
+  }
+
+  file { "/usr/share/drush":
+    ensure => directory,
     owner => root,
     group => root,
     mode => 755,
   }
+
+  file {  "/usr/share/drush/commands":
+    require => File['/usr/share/drush'],
+    ensure => directory,
+    owner => root,
+    group => root,
+    mode => 755,
+  }
+
 
 }
