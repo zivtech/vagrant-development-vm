@@ -1,7 +1,10 @@
 Vagrant::Config.run do |config|
+
   config.vm.box = "precise-base"
   config.vm.box_url = "http://fattony.zivtech.com/files/precise-base.box"
   config.vm.network :hostonly, "33.33.33.40"
+
+  config.ssh.forward_agent = true
 
   config.vm.provision :puppet do |puppet|
     puppet.module_path = "puppet-modules"
