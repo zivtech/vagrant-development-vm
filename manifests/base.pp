@@ -59,7 +59,10 @@ class vagrantvm {
   include stylomatic
   include solr
   include drush
-  include drushfetcher
+  class { "drushfetcher":
+    fetcher_host => 'http://extranet.local',
+  }
+  include drushphpsh
 }
 
 include vagrantsetup
