@@ -54,6 +54,13 @@ class solr ( $tomcatuser = 'tomcat6', $webadmingroup = 'root') {
     provider => 'git',
     revision => '3c47dcf1a2c82f7d23125a09c07f364afc5765ca',
   }
+
+  file { '/usr/local/bin/create-solr-instance':
+    source => "puppet:///modules/solr/create-solr-instance",
+    owner => 'root',
+    group => 'root',
+    mode => 755,
+  }
 }
 
 

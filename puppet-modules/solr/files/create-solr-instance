@@ -1,0 +1,28 @@
+#! /usr/bin/env bash
+
+if [ ! $1 ] ; then
+  echo "Please specify a name for this instance."
+  exit
+fi
+if [ ! $2 ] ; then
+  echo "You must specify the drupal version for this solr instance. EXAMPLE 'create-solr-instance myinstance 6'"
+  exit
+fi
+if [ $2 != '6' -a $2 != '7' ] ; then
+  echo "Invalid drupal version. This script supports drupal 6 and 7 only."
+  exit
+fi
+if [ $2 == '7' -a $3 == 'sapi'] ; then
+  cp -r /opt/solr/solrbase-$2/ /opt/solr/solr-$1
+else
+  cp -r /opt/solr/sapi-solrbase-$2/ /opt/solr/solr-$1
+fi
+CONTEXT=$"<Context docBase=\"/opt/solr/solr-$1/solr.war\" debug=\"0\" crossContext=\"true\" >
+   <Environment name=\"solr/home\" type=\"java.lang.String\" value=\"/opt/solr/solr-$1\" override=\"true\" />
+</Context>"
+echo "$CONTEXT">"/etc/tomcat6/Catalina/localhost/solr-$1.xml"
+chmod g+xw /opt/solr/solr-$1
+chown -R :tomcat6 /opt/solr/solr-$1
+chmod -R g+w /opt/solr/solr-$1
+sudo /etc/init.d/tomcat6 restart
+echo "A solr instance has been created and can be visited on this server at :8080/solr-$1"
