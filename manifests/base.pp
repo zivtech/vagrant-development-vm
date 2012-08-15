@@ -56,6 +56,10 @@ class vagrantvm {
     groups => ['dialout']
   }
 
+  class { "solr":
+    webadmingroup => $webadmingroup,
+  }
+
   include stylomatic
   include solr
   include drush
