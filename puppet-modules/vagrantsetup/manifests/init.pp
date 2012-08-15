@@ -5,15 +5,6 @@ class vagrantsetup {
     ensure => present,
   }
 
-  file { "/etc/apt/sources.list":
-    ensure => present,
-    owner => root,
-    group => root,
-    mode => 644,
-    source => "puppet:///modules/vagrantsetup/sources.list",
-  }
-
-
   # Prevent errors by running apt-get update when anything beneath /etc/apt/ changes
   exec { "apt-get-update":
     command => "/usr/bin/apt-get update",
