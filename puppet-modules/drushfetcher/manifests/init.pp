@@ -8,7 +8,7 @@ class drushfetcher ($fetcher_host) inherits drush {
     ensure => present,
     provider => git,
     source => "http://git.drupal.org/sandbox/tizzo/1703334.git",
-    revision => '30195f4',
+    revision => 'b3f3543',
   }
 
   vcsrepo { "/usr/share/drush/commands/fetcher_services":
