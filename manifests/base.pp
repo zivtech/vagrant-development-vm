@@ -63,7 +63,7 @@ class vagrantvm {
   include stylomatic
   include drush
   class { "drushfetcher":
-    fetcher_host => 'http://extranet.local',
+    fetcher_host => 'https://extranet.zivtech.com',
   }
   include drushphpsh
 }
