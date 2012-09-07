@@ -26,12 +26,14 @@ class vagrantvm {
     webadminuser => $user,
     webadmingroup => $group,
     require => Class['webadmin'],
+    web_permissions => 'false',
   }
 
   class { "Php53::Dev":
     webadminuser => $user,
     webadmingroup => $group,
     require => Class['webadmin', 'Php53'],
+    web_permissions => 'false',
   }
 
 
