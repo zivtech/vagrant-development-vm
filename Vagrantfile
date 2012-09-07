@@ -1,7 +1,7 @@
 Vagrant::Config.run do |config|
 
   # Things you might want to modify!
-  config.vm.host_name = "DevVM"
+  config.vm.host_name = "local"
   config.vm.customize ["modifyvm", :id, "--memory", "1024"]
 
 
@@ -16,5 +16,8 @@ Vagrant::Config.run do |config|
     puppet.manifests_path = "manifests"
     puppet.manifest_file = "base.pp"
   end
-
+  # NFS sharing does not work on windows, so if this is windows don't try to start it.
+  if not RUBY_PLATFORM.downcase.include?("mswin")
+    config.vm.share_folder("web", "/var/www", "www", :nfs => true)
+  end
 end
