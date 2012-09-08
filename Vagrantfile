@@ -2,12 +2,11 @@ Vagrant::Config.run do |config|
 
   # Things you might want to modify!
   config.vm.host_name = "local"
-  config.vm.customize ["modifyvm", :id, "--memory", "1024"]
-
+  config.vm.customize ["modifyvm", :id, "--memory", "2048"]
+  config.vm.network :hostonly, "33.33.33.40"
 
   config.vm.box = "precise-base"
   config.vm.box_url = "http://fattony.zivtech.com/files/precise-base.box"
-  config.vm.network :hostonly, "33.33.33.40"
 
   config.ssh.forward_agent = true
 
