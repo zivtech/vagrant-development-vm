@@ -61,6 +61,13 @@ class solr ( $tomcatuser = 'tomcat6', $webadmingroup = 'root') {
     group => 'root',
     mode => 755,
   }
+
+  file { '/usr/local/bin/remove-solr-instance':
+    source => "puppet:///modules/solr/remove-solr-instance",
+    owner => 'root',
+    group => 'root',
+    mode => 755,
+  }
 }
 
 
