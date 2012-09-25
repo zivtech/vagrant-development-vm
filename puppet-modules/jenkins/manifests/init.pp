@@ -14,14 +14,6 @@ class jenkins {
     mode => 644,
     notify => Service['jenkins'],
   }
-  vcsrepo { '/var/lib/jekins':
-    require => Package['jenkins'],
-    source => "puppet:///modules//pound.cfg",
-    owner => 'root',
-    group => 'root',
-    mode => 644,
-    notify => Service['pound'],
-  }
   vcsrepo { "/var/lib/jenkins":
     require => [
       Package['tomcat6'],
