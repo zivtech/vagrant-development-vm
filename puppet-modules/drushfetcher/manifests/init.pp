@@ -14,7 +14,7 @@ class drushfetcher ($fetcher_host) inherits drush {
     require => File["/usr/share/drush", "/usr/share/drush/commands"],
     ensure => present,
     provider => git,
-    source => "http://git.drupal.org/project/fetcher.git",
+    source => "http://git.drupal.org/project/fetcher_services.git",
   }
 
   file { "/etc/drush":
