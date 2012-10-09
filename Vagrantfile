@@ -5,8 +5,8 @@ Vagrant::Config.run do |config|
   config.vm.customize ["modifyvm", :id, "--memory", "2048"]
   config.vm.network :hostonly, "33.33.33.40"
 
-  config.vm.box = "precise-base"
-  config.vm.box_url = "http://fattony.zivtech.com/files/precise-base.box"
+  config.vm.box = "precise-base-4.1.20"
+  config.vm.box_url = "http://fattony.zivtech.com/files/precise-base-vbox-4.1.20.box"
 
   config.ssh.forward_agent = true
 

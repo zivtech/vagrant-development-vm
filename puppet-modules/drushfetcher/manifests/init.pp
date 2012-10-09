@@ -7,16 +7,14 @@ class drushfetcher ($fetcher_host) inherits drush {
     require => File["/usr/share/drush", "/usr/share/drush/commands"],
     ensure => present,
     provider => git,
-    source => "http://git.drupal.org/sandbox/tizzo/1703334.git",
-    revision => 'b3f3543',
+    source => "http://git.drupal.org/project/fetcher.git",
   }
 
   vcsrepo { "/usr/share/drush/commands/fetcher_services":
     require => File["/usr/share/drush", "/usr/share/drush/commands"],
     ensure => present,
     provider => git,
-    source => "http://git.drupal.org/sandbox/tizzo/1704332.git",
-    revision => '942cdf0',
+    source => "http://git.drupal.org/project/fetcher_services.git",
   }
 
   file { "/etc/drush":
