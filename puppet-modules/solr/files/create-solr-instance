@@ -1,11 +1,11 @@
 #! /usr/bin/env bash
 
 if [ ! $1 ] ; then
-  echo "Please specify a name for this instance, version and optionally include `sapi` if this is a sapi instance."
+  echo "Please specify a name for this instance, version and optionally include 'sapi' if this is a sapi instance."
   exit
 fi
 if [ ! $2 ] ; then
-  echo "You must specify the drupal version for this solr instance. EXAMPLE 'create-solr-instance myinstance 6'.  If this is a searchapi instance, add that after the number (eg `create-solr-instance myinstance 7 sapi`."
+  echo "You must specify the drupal version for this solr instance. EXAMPLE 'create-solr-instance myinstance 6'.  If this is a searchapi instance, add that after the number (eg 'create-solr-instance myinstance 7 sapi'."
   exit
 fi
 if [ $2 != '6' -a $2 != '7' ] ; then
