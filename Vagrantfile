@@ -1,3 +1,9 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Include our deploy command.
+require File.dirname(__FILE__) + '/ssh-add.rb'
+
 Vagrant::Config.run do |config|
 
   # Things you might want to modify!
