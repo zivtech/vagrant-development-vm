@@ -12,11 +12,18 @@ if [ $2 != '6' ] && [ $2 != '7' ] ; then
   echo "Invalid drupal version. This script supports drupal 6 and 7 only."
   exit
 fi
-if [ $2 = '7' ] && [ $3 = 'sapi' ] ; then
-  cp -r /opt/solr/sapi-solrbase-$2/ /opt/solr/solr-$1
-else
-  cp -r /opt/solr/solrbase-$2/ /opt/solr/solr-$1
+# Figure out which solr instance to copy
+BASEPATH=/opt/solr/solrbase-$2/
+if [ -n "$3" ] ; then
+  if [ $2 = '7' ] && [ $3 = 'sapi' ] ; then
+    BASEPATH=/opt/solr/sapi-solrbase-$2/
+  else
+    echo "Unsupported sapi version"
+    exit 1
+  fi
 fi
+cp -r "$BASEPATH" /opt/solr/solr-$1
+
 CONTEXT=$"<Context docBase=\"/opt/solr/solr-$1/solr.war\" debug=\"0\" crossContext=\"true\" >
    <Environment name=\"solr/home\" type=\"java.lang.String\" value=\"/opt/solr/solr-$1\" override=\"true\" />
 </Context>"
