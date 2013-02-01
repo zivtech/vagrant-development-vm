@@ -34,6 +34,8 @@ class vagrantvm {
     webadmingroup => $group,
     require => Class['webadmin', 'Php53'],
     web_permissions => 'false',
+    xdebug_idekey => 'netbeans-xdebug',
+    xdebug_remote_host => '33.33.33.1',
   }
 
 
@@ -62,7 +64,6 @@ class vagrantvm {
     webadmingroup => $webadmingroup,
   }
 
-  include stylomatic
   include drush
   class { "drushfetcher":
     fetcher_host => 'https://extranet.zivtech.com',
