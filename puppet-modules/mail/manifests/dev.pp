@@ -1,4 +1,4 @@
-class mail::dev($user = 'webadmin') inherits mail {
+class mail::dev($dev_mail = '') inherits mail {
 
   # @todo: This needs to restart postfix if changed, but
   # we would have to setup postfix as its own package.

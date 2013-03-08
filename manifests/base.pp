@@ -56,6 +56,11 @@ class vagrantvm {
     require => Class['webadmin', 'Mysql5'],
   }
 
+  class { 'mail::dev':
+    dev_mail => "${user}@${hostname}",
+    require => Class['webadmin'],
+  }
+
   user { "www-data":
     groups => ['dialout']
   }

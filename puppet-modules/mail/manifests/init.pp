@@ -1,3 +1,3 @@
-class mail($user = 'webadmin') {
+class mail($dev_mail = '') {
 
 }
