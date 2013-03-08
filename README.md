@@ -35,4 +35,4 @@ about a failed mount remove the virtual machine with "vagrant destroy" then
 comment out the line that sets this up in the VagrantFile by placing a # at the
 beginning of the line:
 
-/#config.vm.share_folder("web", "/var/www", "www", :nfs => true)
+\#config.vm.share_folder("web", "/var/www", "www", :nfs => true)
