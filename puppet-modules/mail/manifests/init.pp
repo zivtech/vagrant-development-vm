@@ -1,0 +1,3 @@
+class mail($user = 'webadmin') {
+
+}
