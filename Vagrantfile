@@ -22,7 +22,9 @@ Vagrant::Config.run do |config|
     puppet.manifest_file = "base.pp"
   end
   # NFS sharing does not work on windows, so if this is windows don't try to start it.
-  if not RUBY_PLATFORM.downcase.include?("mswin")
+  require 'rbconfig'
+  is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
+  if not is_windows
     config.vm.share_folder("web", "/var/www", "www", :nfs => true)
   end
 end
