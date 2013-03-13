@@ -1,13 +1,16 @@
-﻿##About
+﻿# Zivtech
+
+## About
+
 This repository manages Zivtech's development virtual server. It has a number of
 tools that Zivtech uses to help build Drupal sites. Drush is included as well as
 Drush Fetcher which is a tool used to sync copies of Drupal sites between
 environments. There are also other useful features such as a solr server for
 Drupal search integration.
 
-##Installation
-You must have Vagrant (http://vagrantup.com) and VirtualBox
-(https://www.virtualbox.org/) installed first.
+## Installation
+
+You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org/) installed first.
 
 This repository has several git submodules that you will need before the
 installation will complete. Run "git submodule update --init" from within this
@@ -26,13 +29,14 @@ When this is completed back on the command line in this directory run
 
 You should now have a working Virtual Server.
 
-The default server hostname is "local" and the default IP is 33.33.33.40.
+The default server hostname is `local` and the default IP is `33.33.33.40`.
 
-##Issues
+## Issues
+
 Vagrant tries to mount a shared NFS directory to the host machine (the physical
 computer). This has been known to fail in some cases. If you receive errors
 about a failed mount remove the virtual machine with "vagrant destroy" then
 comment out the line that sets this up in the VagrantFile by placing a # at the
 beginning of the line:
 
-\#config.vm.share_folder("web", "/var/www", "www", :nfs => true)
+    #config.vm.share_folder("web", "/var/www", "www", :nfs => true)
