@@ -9,6 +9,19 @@ class {
   'vagrantvm': stage => main;
 }
 
+class wget {
+  package { 'wget':
+    ensure => 'installed',
+  }
+}
+
+class gcc {
+  package { 'gcc':
+    ensure => 'installed',
+  }
+}
+
+
 class vagrantvm {
   $user = 'vagrant'
   $group = 'vagrant'
@@ -74,6 +87,8 @@ class vagrantvm {
     fetcher_host => 'https://extranet.zivtech.com',
   }
   include drushphpsh
+
+  include redis
 }
 
 include vagrantsetup
