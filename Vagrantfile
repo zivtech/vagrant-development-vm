@@ -26,5 +26,7 @@ Vagrant::Config.run do |config|
   is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
   if not is_windows
     config.vm.share_folder("web", "/var/www", "www", :nfs => true)
+  else
+    config.vm.share_folder("web", "/var/www", "www")
   end
 end
