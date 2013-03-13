@@ -18,7 +18,7 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :puppet do |puppet|
     puppet.module_path = "puppet-modules"
-    puppet.manifests_path = "manifests"
+    puppet.manifests_path = "puppet-manifests"
     puppet.manifest_file = "base.pp"
   end
   # NFS sharing does not work on windows, so if this is windows don't try to start it.
