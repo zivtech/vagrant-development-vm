@@ -12,7 +12,7 @@
 	url = https://github.com/bruce/puppet-vcsrepo.git
 [submodule "puppet-modules/solr"]
 	path = puppet-modules/solr
-	url = https://github.com/zivtech/puppet-drupal-solr.git
+	url = git@github.com:zivtech/puppet-drupal-solr.git
 [submodule "puppet-modules/redis"]
 	path = puppet-modules/redis
 	url = https://github.com/thomasvandoren/puppet-redis.git
