@@ -23,6 +23,7 @@ class gcc {
 
 
 class vagrantvm {
+
   $user = 'vagrant'
   $group = 'vagrant'
 
@@ -30,7 +31,7 @@ class vagrantvm {
     webadminuser => $user,
     webadmingroup => $group,
   }
-
+  /*
   # This lovely little hack of instantiating the class
   # we extend before the extending class allows us to get
   # our parameters into it.  Otherwise the parent class does
@@ -89,6 +90,7 @@ class vagrantvm {
   include drushphpsh
 
   include redis
+  #*/
 }
 
 include vagrantsetup
