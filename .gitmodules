@@ -22,3 +22,6 @@
 [submodule "puppet-modules/epel"]
 	path = puppet-modules/epel
 	url = https://github.com/stahnma/puppet-module-epel.git
+[submodule "puppet-modules/mysql"]
+	path = puppet-modules/mysql
+	url = https://github.com/puppetlabs/puppetlabs-mysql.git
