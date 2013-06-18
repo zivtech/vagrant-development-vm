@@ -2,14 +2,18 @@
 # vi: set ft=ruby :
 
 # Include our deploy command.
-require File.dirname(__FILE__) + '/ssh-add.rb'
+# require File.dirname(__FILE__) + '/ssh-add.rb'
 
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
 
   # Things you might want to modify!
-  config.vm.host_name = "local"
-  config.vm.customize ["modifyvm", :id, "--memory", "2048"]
-  config.vm.network :hostonly, "33.33.33.40"
+  config.vm.hostname = "local"
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+  end
+
+  config.vm.network :private_network, ip: "33.33.33.40"
 
   config.vm.box = "precise-vbox-4.2.4"
   config.vm.box_url = "http://fattony.zivtech.com/files/precise-vbox-4.2.4.box"
@@ -25,8 +29,8 @@ Vagrant::Config.run do |config|
   require 'rbconfig'
   is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
   if not is_windows
-    config.vm.share_folder("web", "/var/www", "www", :nfs => true)
+    config.vm.synced_folder "web", "/var/www", :nfs => true
   else
-    config.vm.share_folder("web", "/var/www", "www")
+    config.vm.synced_folder "web", "/var/www"
   end
 end
