@@ -1,8 +1,12 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
+
 # Include our deploy command.
-# require File.dirname(__FILE__) + '/ssh-add.rb'
+if not is_windows
+  require File.dirname(__FILE__) + '/ssh-add.rb'
+end
 
 Vagrant.configure("2") do |config|
 
@@ -27,7 +31,7 @@ Vagrant.configure("2") do |config|
   end
   # NFS sharing does not work on windows, so if this is windows don't try to start it.
   require 'rbconfig'
-  is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
+
   if not is_windows
     config.vm.synced_folder "web", "/var/www", :nfs => true
   else

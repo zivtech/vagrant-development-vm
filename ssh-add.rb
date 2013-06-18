@@ -1,15 +1,17 @@
-require 'vagrant'
+# require 'vagrant'
 require 'net/ssh'
 
-module ZivtechKeyAdder
-  class Middleware < Vagrant::Command::SSH
-   def initialize(app, env, options = {})
-      @app = app
-      @env = env
-    end
+# TODO: This should actually be tied to `vagrant ssh`. Update for the new API.
 
-    def execute
-      with_target_vms(nil) do |vm|
+# module ZivtechKeyAdder
+#   class Middleware < Vagrant::Command::SSH
+#    def initialize(app, env, options = {})
+#       @app = app
+#       @env = env
+#     end
+
+#     def execute
+#       with_target_vms(nil) do |vm|
         agent = Net::SSH::Authentication::Agent.connect()
         rsaFound = false
         agent.identities().each do |identity|
@@ -19,15 +21,16 @@ module ZivtechKeyAdder
         end
         if not rsaFound
           # If we are still running, no rsa key was found. Add one
-          @env.ui.info "No RSA key found, running ssh-add to add one."
+          # @env.ui.info "No RSA key found, running ssh-add to add one."
+          puts "No RSA key found, running ssh-add to add one."
           Kernel.system "ssh-add"
         end
         # Load and call the default SSH command middleware
-        sshCommand = Vagrant::Command::SSH.new @app, @env
-        sshCommand.execute()
-      end
-    end
-  end
-end
+        # sshCommand = Vagrant::Command::SSH.new @app, @env
+        # sshCommand.execute()
+#       end
+#     end
+#   end
+# end
 
-Vagrant.commands.register(:ssh) { ZivtechKeyAdder::Middleware }
+# Vagrant.commands.register(:ssh) { ZivtechKeyAdder::Middleware }
