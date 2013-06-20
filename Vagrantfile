@@ -33,8 +33,8 @@ Vagrant.configure("2") do |config|
   require 'rbconfig'
 
   if not is_windows
-    config.vm.synced_folder "web", "/var/www", :nfs => true
+    config.vm.synced_folder "www", "/var/www", :nfs => true
   else
-    config.vm.synced_folder "web", "/var/www"
+    config.vm.synced_folder "www", "/var/www"
   end
 end
