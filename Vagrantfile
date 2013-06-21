@@ -35,6 +35,7 @@ Vagrant.configure("2") do |config|
   if not is_windows
     config.vm.synced_folder "www", "/var/www", :nfs => true
   else
-    config.vm.synced_folder "www", "/var/www"
+    # Uncomment this for windows file sharing. When using windows file sharing, symlinks will not work.
+    # config.vm.synced_folder "www", "/var/www"
   end
 end
