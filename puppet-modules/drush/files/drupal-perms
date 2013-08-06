@@ -1,0 +1,74 @@
+#! /bin/bash
+
+while getopts hp: opt; do
+  case $opt in
+    h)
+      echo "This program is designed to fix file permissions on an ubuntu/debian system in accordance with https://drupal.org/node/244924."
+      echo "Execute it from the directory that contains the drupal code directory."
+      echo "A setup with code pulbic_file and private_files as peers is assumed."
+      echo "Use -p [pathname] to specify a particular path. Otherwise the assumption is that it is the current working directory."
+      echo "You may need to run with sudo or as root in order to correctly set the file permissions."
+      exit 0;
+      ;;
+    p)
+      echo "Working in directory $OPTARG"
+      cd $OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+CURRENT=`pwd`
+CODE_DIR='code'
+PUB_FILES_DIR='public_files'
+PRIVATE_FILES_DIR='private_files'
+APACHE_USER='www-data'
+
+# Non-recursively change directory ownership
+echo "Changing code subdirectories group ownership to apache user."
+find $CURRENT/$CODE_DIR -not -path '*/.git*/*' -not -name '.git' -type d -exec chown :www-data '{}' \;
+# Change file ownership.
+echo "Changing code files group ownership to apache user."
+find $CURRENT/$CODE_DIR -not -path '*/.git*/*' -not -name '.git' -type f -exec chown :www-data '{}' \;
+
+# Same thing for public files
+echo "Changing public_files subdirectories group ownership to apache user."
+find $CURRENT/$PUB_FILES_DIR -not -path '*/.git*/*' -not -name '.git' -type d -exec chown :www-data '{}' \;
+echo "Changing public_files files group ownership to apache user."
+find $CURRENT/$PUB_FILES_DIR -not -path '*/.git*/*' -not -name '.git' -type f -exec chown :www-data '{}' \;
+
+# Finally make the code dir and the files dir group owned by apache.
+echo "Changing group of top level directories."
+chgrp www-data $CURRENT/$CODE_DIR
+chgrp www-data $CURRENT/$PUB_FILES_DIR
+
+#Change permissions on the code dir's subdirectories and files. (Not git).
+echo "Changing directory permissions within the code directory"
+find $CURRENT/$CODE_DIR -not -path '*/.git*/*' -not -name '.git' -type d -exec chmod u=rwx,g=rx,o= '{}' \;
+echo "Changing file permissions within the code directory"
+find $CURRENT/$CODE_DIR -not -path '*/.git*/*' -not -name '.git' -type f -exec chmod u=rw,g=r,o= '{}' \;
+echo "Changing top level directory permissions."
+chmod u=rwx,g=rx,o= $CURRENT/$CODE_DIR
+
+#Change permissions on the pub files subdirectories and files. (Not git).
+echo "Changing directory permissions within the public_files directory"
+find $CURRENT/$PUB_FILES_DIR -not -path '*/.git*/*' -not -name '.git' -type d -exec chmod ug=rwx,o= '{}' \;
+echo "Changing file permissions within the public_files directory"
+find $CURRENT/$PUB_FILES_DIR -not -path '*/.git*/*' -not -name '.git' -type f -exec chmod ug=rw,o= '{}' \;
+echo "Changing top level directory permissions."
+chmod u=rwx,g=rwx,o= $CURRENT/$PUB_FILES_DIR
+
+if [ -d $CURRENT/$PRIVATE_FILES_DIR ]; then
+  echo "Found Private Files - Updating ownership and perms";
+  find $CURRENT/$PRIVATE_FILES_DIR -not -path '*/.git*/*' -not -name '.git' -type d -exec chown :www-data '{}' \;
+  find $CURRENT/$PRIVATE_FILES_DIR -not -path '*/.git*/*' -not -name '.git' -type f -exec chown :www-data '{}' \;
+  find $CURRENT/$PRIVATE_FILES_DIR -not -path '*/.git*/*' -not -name '.git' -type d -exec chmod ug=rwx,o= '{}' \;
+  find $CURRENT/$PRIVATE_FILES_DIR -not -path '*/.git*/*' -not -name '.git' -type f -exec chmod ug=rw,o= '{}' \;
+  chmod u=rwx,g=rwx,o= $CURRENT/$PRIVATE_FILES_DIR
+fi

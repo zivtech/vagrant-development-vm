@@ -41,5 +41,11 @@ class drush {
     mode => 755,
   }
 
+  file { '/usr/local/bin/drupal-perms':
+    source => "puppet:///modules/drush/drupal-perms",
+    owner => 'root',
+    group => 'root',
+    mode => 755,
+  }
 
 }
