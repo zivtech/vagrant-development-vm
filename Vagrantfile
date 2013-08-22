@@ -15,7 +15,7 @@ Vagrant.configure('2') do |config|
     end
 
     #config.vm.provider.customize ['modifyvm', :id, '--memory', '2048']
-    config.vm.network :private_network, ip: "192.168.50.50"
+    config.vm.network :private_network, ip: "33.33.33.40"
 
     config.vm.box = "precise-vbox-4.2.4"
     config.vm.box_url = "http://fattony.zivtech.com/files/precise-vbox-4.2.4.box"
