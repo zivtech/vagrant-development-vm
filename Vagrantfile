@@ -19,10 +19,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :private_network, ip: "33.33.33.40"
 
-  config.vm.box = "precise-vbox-4.2.4"
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
-  # TODO: Is this URL accessible?
-  # config.vm.box_url = "http://fattony.zivtech.com/files/precise-vbox-4.2.4.box"
+  config.vm.box = "precise-vbox-4.2.18"
+  config.vm.box_url = "http://fattony.zivtech.com/files/precise-vbox-4.2.18.box"
 
   config.ssh.forward_agent = true
 
