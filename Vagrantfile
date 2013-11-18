@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :private_network, ip: "33.33.33.40"
 
   config.vm.box = "precise-vbox-4.2.18"
-  config.vm.box_url = "http://fattony.zivtech.com/files/precise-vbox-4.2.18.box"
+  config.vm.box_url = "http://fattony.zivtech.com/files/precise-vbox-4.2.18.2.box"
 
   config.ssh.forward_agent = true
 
