@@ -19,3 +19,6 @@
 [submodule "puppet-modules/stdlib"]
 	path = puppet-modules/stdlib
 	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "puppet-modules/wget"]
+	path = puppet-modules/wget
+	url = https://github.com/maestrodev/puppet-wget.git
