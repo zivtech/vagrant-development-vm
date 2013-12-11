@@ -25,7 +25,7 @@ class drushfetcher ($fetcher_host) inherits drush {
 
   exec { "/usr/bin/php /usr/local/bin/composer install":
     cwd         => "/usr/share/drush/commands/drush_fetcher",
-    creates     => "/usr/share/drush/commands/drush_fetcher/node_modules",
+    creates     => "/usr/share/drush/commands/drush_fetcher/vendor",
     environment => "HOME=/root/",
     require     => [
       Package['php5-cli'],
