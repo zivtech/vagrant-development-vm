@@ -24,9 +24,10 @@ class drushfetcher ($fetcher_host) inherits drush {
   }
 
   exec { "/usr/bin/php /usr/local/bin/composer install":
-    cwd     => "/usr/share/drush/commands/drush_fetcher",
-    creates => "/usr/share/drush/commands/drush_fetcher/node_modules",
-    require => [
+    cwd         => "/usr/share/drush/commands/drush_fetcher",
+    creates     => "/usr/share/drush/commands/drush_fetcher/node_modules",
+    environment => "HOME=/root/",
+    require     => [
       Package['php5-cli'],
       Wget::Fetch["Composer"],
       Vcsrepo["/usr/share/drush/commands/drush_fetcher"],
