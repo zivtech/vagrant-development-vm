@@ -12,14 +12,20 @@ Drupal search integration.
 
 You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org/) installed first.
 
-This repository has several git submodules that you will need before the
+````bash
+git clone --recrusive https://github.com/zivtech/vagrant-development-vm.git
+git submodule update --init # Note this part isn't necessary if you included the `--recursive` option above.
+vagrant up
+````
+
+*NOTE:* This repository has several git submodules that you will need before the
 installation will complete. Run "git submodule update --init" from within this
 directory to get the required sub-projects.
 
-Once the repositories have been downloaded run "vagrant up" from within this
-directory. This will build the virtual server and provision it. You can change
-some settings such as the IP address of the server and the server's name in the
-VagrantFile.
+
+Once the repositories have been downloaded, running "vagrant up" from within this
+directory will build the virtual server and provision it. You can change settings
+such as the IP address of the server and the server's name in the VagrantFile.
 
 After the server has been built it is a good idea to update the packages. Log in
 to the server over SSH. The username and password are both "vagrant". Run
