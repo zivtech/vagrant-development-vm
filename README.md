@@ -13,7 +13,7 @@ Drupal search integration.
 You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org/) installed first.
 
 ````bash
-git clone --recrusive https://github.com/zivtech/vagrant-development-vm.git
+git clone --recursive https://github.com/zivtech/vagrant-development-vm.git
 git submodule update --init # Note this part isn't necessary if you included the `--recursive` option above.
 vagrant up
 ````
