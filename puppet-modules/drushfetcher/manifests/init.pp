@@ -10,6 +10,7 @@ class drushfetcher ($fetcher_host) inherits drush {
     timeout     => 0,
     verbose     => false,
   }->
+
   file { '/usr/local/bin/composer':
     mode => 755,
   }
@@ -20,7 +21,7 @@ class drushfetcher ($fetcher_host) inherits drush {
     provider => git,
     source => "http://git.drupal.org/project/fetcher.git",
     revision => '2d85462bdb443bf676882b28439a74b4e7f6eb88',
-    notify   => Exec["/usr/bin/php /usr/local/bin/composer install"],
+    notify   => Exec["/usr/bin/php /usr/local/bin/composer install --no-dev"],
   }
 
   exec { "/usr/bin/php /usr/local/bin/composer install":
@@ -39,7 +40,7 @@ class drushfetcher ($fetcher_host) inherits drush {
     ensure => present,
     provider => git,
     source => "http://git.drupal.org/project/fetcher_services.git",
-    revision => "b1d56371b266c43cd76407df3765d0650140fdd6",
+    revision => "20f445c388808eeed4a59173a05ce4c7c289de35",
   }
 
   file { "/etc/drush":
