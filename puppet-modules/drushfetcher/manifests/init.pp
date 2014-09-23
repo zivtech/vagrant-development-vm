@@ -24,7 +24,7 @@ class drushfetcher ($fetcher_host) inherits drush {
     notify   => Exec["/usr/bin/php /usr/local/bin/composer install --no-dev"],
   }
 
-  exec { "/usr/bin/php /usr/local/bin/composer install":
+  exec { "/usr/bin/php /usr/local/bin/composer install --no-dev":
     cwd         => "/usr/share/drush/commands/drush_fetcher",
     creates     => "/usr/share/drush/commands/drush_fetcher/vendor",
     environment => "HOME=/root/",
