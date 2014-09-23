@@ -16,11 +16,11 @@ class drushfetcher ($fetcher_host) inherits drush {
   }
 
   vcsrepo { "/usr/share/drush/commands/drush_fetcher":
-    require => File["/usr/share/drush", "/usr/share/drush/commands"],
-    ensure => present,
+    require  => File["/usr/share/drush", "/usr/share/drush/commands"],
+    ensure   => present,
     provider => git,
-    source => "http://git.drupal.org/project/fetcher.git",
-    revision => '2d85462bdb443bf676882b28439a74b4e7f6eb88',
+    source   => "http://git.drupal.org/project/fetcher.git",
+    revision => 'a75910d2564e530dfb87a872fa9f04e711d9e46a',
     notify   => Exec["/usr/bin/php /usr/local/bin/composer install --no-dev"],
   }
 
@@ -36,26 +36,26 @@ class drushfetcher ($fetcher_host) inherits drush {
   }
 
   vcsrepo { "/usr/share/drush/commands/fetcher_services":
-    require => File["/usr/share/drush", "/usr/share/drush/commands"],
-    ensure => present,
+    require  => File["/usr/share/drush", "/usr/share/drush/commands"],
+    ensure   => present,
     provider => git,
-    source => "http://git.drupal.org/project/fetcher_services.git",
+    source   => "http://git.drupal.org/project/fetcher_services.git",
     revision => "20f445c388808eeed4a59173a05ce4c7c289de35",
   }
 
   file { "/etc/drush":
     ensure => directory,
-    owner => 'root',
-    group => 'root',
-    mode => 755,
+    owner  => 'root',
+    group  => 'root',
+    mode   => 755,
   }
 
   file { "/etc/drush/drushrc.php":
     require => File['/etc/drush'],
-    mode => 755,
+    mode    => 755,
     content => template("drushfetcher/drushrc.php.erb"),
-    owner => 'root',
-    group => 'root',
+    owner   => 'root',
+    group   => 'root',
   }
 
 }
