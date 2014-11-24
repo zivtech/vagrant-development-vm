@@ -87,6 +87,7 @@ class vagrantvm {
     fetcher_host => 'https://extranet.zivtech.com',
   }
   include drushphpsh
+  include drush-patchfile
 
   include redis
 }
