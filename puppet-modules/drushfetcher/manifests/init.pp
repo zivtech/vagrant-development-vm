@@ -40,7 +40,7 @@ class drushfetcher ($fetcher_host) inherits drush {
     ensure   => present,
     provider => git,
     source   => "http://git.drupal.org/project/fetcher_services.git",
-    revision => "20f445c388808eeed4a59173a05ce4c7c289de35",
+    revision => "b1d56371b266c43cd76407df3765d0650140fdd6",
   }
 
   file { "/etc/drush":
