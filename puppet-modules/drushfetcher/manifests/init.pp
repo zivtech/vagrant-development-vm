@@ -20,7 +20,7 @@ class drushfetcher ($fetcher_host) inherits drush {
     ensure   => present,
     provider => git,
     source   => "http://git.drupal.org/project/fetcher.git",
-    revision => '4dea93472c73c8824aa716e4bce8a85850d72b68',
+    revision => '9cee58b6fae3a4c7cf48ff62100beec74e2b0db7',
     notify   => Exec["/usr/bin/php /usr/local/bin/composer install --no-dev"],
   }
 
