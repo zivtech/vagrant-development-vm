@@ -90,7 +90,11 @@ class vagrantvm {
   include drush-patchfile
 
   include redis
-  include server-autobackup
+  class { 'automysqlbackup':
+    webadminuser  => $user,
+    mysqluser     => 'root',
+    mysqlpassword => '',
+  }
 }
 
 include vagrantsetup
