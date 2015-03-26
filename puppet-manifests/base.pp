@@ -90,6 +90,7 @@ class vagrantvm {
   include drush-patchfile
 
   include redis
+  include server-autobackup
 }
 
 include vagrantsetup
