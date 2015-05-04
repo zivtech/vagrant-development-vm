@@ -3,7 +3,7 @@
   - yaml
 
 :hierarchy:
-  - "main"
+  - "common"
 
 :yaml:
-  :datadir: 'hiera'
+  :datadir: '/vagrant/hiera'

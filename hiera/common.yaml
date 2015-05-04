@@ -1,0 +1,2 @@
+mysql::server::root_password: ''
+drupal_php::server::apache::purge_configs: false

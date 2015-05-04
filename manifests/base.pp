@@ -23,10 +23,7 @@ class vagrantvm {
     require => Class['webadmin'],
   }
 
-  notify { "PRINTING!!! ${my_message}": }
-
   class { "solr":
-    webadmingroup => $webadmingroup,
   }
 
   drush::config { 'fetcher-class':
@@ -51,6 +48,14 @@ class vagrantvm {
   include drushphpsh
   include drush-patchfile
   include mysql::server
+
+  $mysql_root_password = hiera('mysql::server::root_password')
+
+  file { '/home/vagrant/.my.cnf':
+    content => "[client]\nuser=root\nhost=localhost\npassword='${mysql::server::root_password}'\n",
+    owner   => 'vagrant',
+    group   => 'vagrant',
+  }
 
   include redis
 }
