@@ -3,25 +3,26 @@
 ## About
 
 This repository manages Zivtech's development virtual server. It has a number of
-tools that Zivtech uses to help build Drupal sites. Drush is included as well as
-Drush Fetcher which is a tool used to sync copies of Drupal sites between
-environments. There are also other useful features such as a solr server for
-Drupal search integration.
+tools that we use to help build Drupal sites. [Drush](https://drupal.org/project/drush)
+is included as well as [Drush Fetcher](https://drupal.org/project/drush_fetcher)
+which is a tool used to sync copies of Drupal sites between environments.
+There are also other useful features such as a solr server for easy integration with
+[search api](https://drupal.org/project/search_api_solr) or
+[apachesolr](https://drupal.org/project/apachesolr).
 
 ## Installation
 
-You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org/) installed first.
+You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org/)
+installed first. The puppet dependencies are managed via
+[librarian-puppet](https://github.com/rodjek/librarian-puppet) which you will need to install
+as well.
+
 
 ````bash
-git clone --recursive https://github.com/zivtech/vagrant-development-vm.git
-git submodule update --init # Note this part isn't necessary if you included the `--recursive` option above.
+vagrant plugin install vagrant-librarian-puppet
+git clone https://github.com/zivtech/vagrant-development-vm.git
 vagrant up
 ````
-
-*NOTE:* This repository has several git submodules that you will need before the
-installation will complete. Run "git submodule update --init" from within this
-directory to get the required sub-projects.
-
 
 Once the repositories have been downloaded, running "vagrant up" from within this
 directory will build the virtual server and provision it. You can change settings
