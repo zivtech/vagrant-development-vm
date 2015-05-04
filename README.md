@@ -21,6 +21,7 @@ as well.
 ````bash
 vagrant plugin install vagrant-librarian-puppet
 git clone https://github.com/zivtech/vagrant-development-vm.git
+git checkout -b ubuntu-14.04 origin/ubuntu-14.04
 vagrant up
 ````
 
