@@ -19,15 +19,19 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :private_network, ip: "33.33.33.40"
 
-  config.vm.box = "precise-vbox-4.2.18.2"
-  config.vm.box_url = "http://fattony.zivtech.com/files/precise-vbox-4.2.18.2.box"
+  config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
 
   config.ssh.forward_agent = true
 
   config.vm.provision :puppet do |puppet|
-    puppet.module_path = "puppet-modules"
-    puppet.manifests_path = "puppet-manifests"
+    puppet.module_path = [
+      "modules",
+      "custom-modules"
+    ]
+    puppet.manifests_path = "manifests"
     puppet.manifest_file = "base.pp"
+    puppet.hiera_config_path = "hiera.yaml"
+    puppet.working_directory = "/vagrant"
   end
   # NFS sharing does not work on windows, so if this is windows don't try to start it.
   require 'rbconfig'

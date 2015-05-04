@@ -1,0 +1,9 @@
+---
+:backends:
+  - yaml
+
+:hierarchy:
+  - "main"
+
+:yaml:
+  :datadir: 'hiera'
