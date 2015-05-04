@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -23,8 +24,14 @@ Vagrant.configure("2") do |config|
 
   config.ssh.forward_agent = true
 
+  # The puppetlabs vm comes with a puppet.conf that includes a deprecated
+  # config directive, delete it to avoid confusing users.
+  config.vm.provision :shell do |shell|
+    shell.inline = "sed -i '/templatedir=\(.*\)/d' /etc/puppet/puppet.conf"
+  end
+
+  config.librarian_puppet.placeholder_filename = "README"
   config.vm.provision :puppet do |puppet|
-    config.librarian_puppet.placeholder_filename = "README"
     puppet.module_path = [
       "modules",
       "custom-modules"
