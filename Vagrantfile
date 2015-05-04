@@ -24,6 +24,7 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
 
   config.vm.provision :puppet do |puppet|
+    config.librarian_puppet.placeholder_filename = "README"
     puppet.module_path = [
       "modules",
       "custom-modules"
