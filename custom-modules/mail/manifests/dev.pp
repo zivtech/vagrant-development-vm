@@ -14,7 +14,6 @@ class mail::dev($dev_mail = '') inherits mail {
   # This is a required file.  It is empty for us because it
   # allows specific emails to be mapped and we don't have nay.
   file { '/etc/postfix/virtual':
-    require => Package['base-package'],
     source => "puppet:///modules/${module_name}/virtual",
     owner => root,
     group => root,
@@ -25,7 +24,6 @@ class mail::dev($dev_mail = '') inherits mail {
   # @todo: It would be nice to have a way to modify this so
   # we can send stuff to our own email address.
   file { '/etc/postfix/virtual-regexp':
-    require => Package['base-package'],
     content => template("${module_name}/virtual-regexp.erb"),
     owner => root,
     group => root,

@@ -1,4 +1,4 @@
-class vagrantsetup {
+class vagrant_setup {
 
   # TODO: Try deleting the webadmin user here.
   group { ['puppet']:

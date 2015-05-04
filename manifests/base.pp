@@ -5,22 +5,9 @@
 stage { 'first': before => Stage['main'] }
 
 class {
-  'vagrantsetup': stage => first;
+  'vagrant_setup': stage => first;
   'vagrantvm': stage => main;
 }
-
-class wget {
-  package { 'wget':
-    ensure => 'installed',
-  }
-}
-
-class gcc {
-  package { 'gcc':
-    ensure => 'installed',
-  }
-}
-
 
 class vagrantvm {
   $user = 'vagrant'
@@ -31,66 +18,42 @@ class vagrantvm {
     webadmingroup => $group,
   }
 
-  # This lovely little hack of instantiating the class
-  # we extend before the extending class allows us to get
-  # our parameters into it.  Otherwise the parent class does
-  # not receive them.
-  class { "Php53":
-    webadminuser => $user,
-    webadmingroup => $group,
-    require => Class['webadmin'],
-    web_permissions => 'false',
-  }
-
-  class { "Php53::Dev":
-    webadminuser => $user,
-    webadmingroup => $group,
-    require => Class['webadmin', 'Php53'],
-    web_permissions => 'false',
-    xdebug_idekey => 'netbeans-xdebug',
-    xdebug_remote_host => '33.33.33.1',
-  }
-
-
-  # This lovely little hack of instantiating the class
-  # we extend before the extending class allows us to get
-  # our parameters into it.  Otherwise the parent class does
-  # not receive them.
-  class { 'Mysql5':
-    mysqlpassword => '',
-    webadminuser => $user,
-    webadmingroup => $group,
-  }
-
-  class { 'Mysql5::Dev':
-    mysqlpassword => '',
-    webadminuser => $user,
-    webadmingroup => $group,
-    require => Class['webadmin', 'Mysql5'],
-  }
-
   class { 'mail::dev':
     dev_mail => "${user}@${hostname}",
     require => Class['webadmin'],
   }
 
-  user { "www-data":
-    groups => ['dialout']
-  }
+  notify { "PRINTING!!! ${my_message}": }
 
   class { "solr":
     webadmingroup => $webadmingroup,
   }
 
-  include drush
-  class { "drushfetcher":
-    fetcher_host => 'https://extranet.zivtech.com',
+  drush::config { 'fetcher-class':
+    file  => 'fetcher_services',
+    key   => "fetcher']['info_fetcher.class",
+    value => 'FetcherServices\InfoFetcher\FetcherServices',
   }
+
+  drush::config { 'fetcher-services-host':
+    file  => 'fetcher_services',
+    key   => "fetcher']['info_fetcher.config']['host",
+    value => 'https://extranet.zivtech.com',
+  }
+
+  drush::config { 'patch-file':
+    value => 'patches.make',
+  }
+
+  include drupal_php
+  include drush
+  include drush_fetcher
   include drushphpsh
   include drush-patchfile
+  include mysql::server
 
   include redis
 }
 
-include vagrantsetup
+include vagrant_setup
 include vagrantvm

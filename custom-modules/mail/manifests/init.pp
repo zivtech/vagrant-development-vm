@@ -1,6 +1,10 @@
 class mail($dev_mail = '') {
+
+  package { 'postfix':
+    ensure => 'present',
+  }->
+
   service { "postfix":
-    require => Package['base-package'],
     ensure => 'running',
   }
 }

@@ -1,8 +1,8 @@
 # Inherit from drushfetcher to ensure drushrc.php if present.
-class drush-patchfile () inherits drushfetcher {
+class drush-patchfile {
 
   vcsrepo { "/usr/share/drush/commands/drush-patchfile":
-    require  => File["/usr/share/drush", "/usr/share/drush/commands"],
+    require  => Class['drush'],
     ensure   => present,
     provider => git,
     source   => "https://bitbucket.org/davereid/drush-patchfile.git",
