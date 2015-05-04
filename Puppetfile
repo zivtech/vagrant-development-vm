@@ -9,7 +9,10 @@ mod 'puppetlabs-mysql'
 mod 'puppetlabs-gcc'
 mod 'puppetlabs-apt'
 
+mod 'maestrodev-wget'
+
 mod 'saz-memcached'
+mod 'rodjek-logrotate'
 
 mod 'zivtech-drush'
 mod 'zivtech-drush_fetcher'

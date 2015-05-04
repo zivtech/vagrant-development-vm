@@ -1,6 +1,7 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
+    maestrodev-wget (1.7.0)
     nanliu-staging (1.0.3)
     nodes-php (0.9.0)
       puppetlabs-apt (> 0.0.0)
@@ -24,6 +25,7 @@ FORGE
       puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs-stdlib (4.6.0)
     puppetlabs-vcsrepo (1.2.0)
+    rodjek-logrotate (1.1.1)
     saz-memcached (2.7.1)
       puppetlabs-firewall (>= 0.1.0)
       puppetlabs-stdlib (>= 3.2.0)
@@ -56,11 +58,13 @@ GIT
       puppetlabs-vcsrepo (>= 0.1.0)
 
 DEPENDENCIES
+  maestrodev-wget (>= 0)
   puppetlabs-apt (>= 0)
   puppetlabs-gcc (>= 0)
   puppetlabs-git (>= 0)
   puppetlabs-mysql (>= 0)
   puppetlabs-vcsrepo (>= 0)
+  rodjek-logrotate (>= 0)
   saz-memcached (>= 0)
   zivtech-drupal_php (>= 0)
   zivtech-drush (>= 0)
