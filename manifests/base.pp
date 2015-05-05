@@ -42,14 +42,14 @@ class vagrantvm {
     value => 'patches.make',
   }
 
-  file { '/etc/apache2/site-available':
+  file { '/etc/apache2/sites-available':
     owner   => $user,
     group   => $group,
     recurse => true,
     require => Class['drupal_php'],
   }
 
-  file { '/etc/apache2/site-enabled':
+  file { '/etc/apache2/sites-enabled':
     owner   => $user,
     group   => $group,
     recurse => true,
