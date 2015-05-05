@@ -42,6 +42,20 @@ class vagrantvm {
     value => 'patches.make',
   }
 
+  file { '/etc/apache2/site-available':
+    owner   => $user,
+    group   => $group,
+    recurse => true,
+    require => Class['drupal_php'],
+  }
+
+  file { '/etc/apache2/site-enabled':
+    owner   => $user,
+    group   => $group,
+    recurse => true,
+    require => Class['drupal_php'],
+  }
+
   include drupal_php
   include drush
   include drush_fetcher
