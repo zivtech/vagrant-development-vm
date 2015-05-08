@@ -6,10 +6,11 @@ stage { 'first': before => Stage['main'] }
 
 class {
   'vagrant_setup': stage => first;
-  'vagrantvm': stage => main;
+  'vagrant_vm': stage => main;
 }
 
-class vagrantvm {
+class vagrant_vm (
+) {
   $user = 'vagrant'
   $group = 'vagrant'
 
@@ -64,7 +65,7 @@ class vagrantvm {
   include drushphpsh
   include drush_patchfile
 
-  $mysql_root_password = hiera('mysql::server::root_password')
+  include redis
 
   file { '/home/vagrant/.my.cnf':
     content => "[client]\nuser=root\nhost=localhost\npassword='${mysql::server::root_password}'\n",
@@ -72,8 +73,7 @@ class vagrantvm {
     group   => 'vagrant',
   }
 
-  include redis
 }
 
 include vagrant_setup
-include vagrantvm
+include vagrant_vm
