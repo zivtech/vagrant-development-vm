@@ -2,22 +2,14 @@ mysql::server::root_password: 'root'
 drupal_php::server::apache::purge_configs: false
 drush::git_ref: "master"
 drupal_php::log_errors: true
-drupal_php::memory_limit: '128M'
+drupal_php::memory_limit: 128M
 drupal_php::max_execution_time: 30
 drupal_php::post_max_size: '8M'
-drupal_php::upload_max_filesize: '200M'
+drupal_php::upload_max_filesize: 200M
 drupal_php::display_errors : 'On'
 drupal_php::log_errors: 'On'
 drupal_php::timezone: 'GMT'
 drush_patchfile::git_ref: 'e7ffe4ccbb4c7c768788d0c24e6a18835eb35f74'
 drush::configs:
-  fetcher_info_fetcher_class:
-    file: fetcher
-    key: "fetcher']['info_fetcher.class"
-    value: 'FetcherServices\InfoFetcher\FetcherServices'
-  fetcher_services_host:
-    file: fetcher
-    key: "fetcher']['info_fetcher.config']['host"
-    value: "https://extranet.zivtech.com"
   patch-file:
     value: patches.make
