@@ -20,7 +20,7 @@ as well.
 
 ````bash
 vagrant plugin install vagrant-librarian-puppet
-git clone --branch=ubuntu-14.04 https://github.com/zivtech/vagrant-development-vm.git myvm
+git clone https://github.com/zivtech/vagrant-development-vm.git myvm
 cd myvm
 vagrant up
 ````
