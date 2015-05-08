@@ -24,24 +24,7 @@ class vagrant_vm (
     require => Class['webadmin'],
   }
 
-  class { "solr":
-  }
-
-  drush::config { 'fetcher-class':
-    file  => 'fetcher_services',
-    key   => "fetcher']['info_fetcher.class",
-    value => 'FetcherServices\InfoFetcher\FetcherServices',
-  }
-
-  drush::config { 'fetcher-services-host':
-    file  => 'fetcher_services',
-    key   => "fetcher']['info_fetcher.config']['host",
-    value => 'https://extranet.zivtech.com',
-  }
-
-  drush::config { 'patch-file':
-    value => 'patches.make',
-  }
+  include 'solr'
 
   file { '/etc/apache2/sites-available':
     owner   => $user,
