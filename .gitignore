@@ -5,3 +5,4 @@ www/*
 modules/
 .librarian/
 *.sw*
+config.yaml

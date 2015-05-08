@@ -4,12 +4,14 @@
 
 require 'yaml'
 require 'rbconfig'
+
+params = YAML::load_file('./default.config.yaml')
  
 # Load new configuration files.
 begin
-  params = YAML::load_file('./config.yaml')
+  params = params.merge YAML::load_file('./config.yaml')
 rescue
-  params = YAML::load_file('./default.config.yaml')
+  # The customization file didn't exist - no worries.
 end
 
 is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
