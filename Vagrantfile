@@ -40,7 +40,7 @@ Vagrant.configure('2') do |config|
   # config directive, delete it to avoid confusing users.
   config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppet/puppet.conf"
 
-  #config.librarian_puppet.placeholder_filename = 'README'
+  config.librarian_puppet.placeholder_filename = 'README'
   config.vm.provision :puppet do |puppet|
     puppet.module_path = [
       'modules',
