@@ -24,8 +24,6 @@ class vagrant_vm (
     require => Class['webadmin'],
   }
 
-  include 'solr'
-
   file { '/etc/apache2/sites-available':
     owner   => $user,
     group   => $group,
@@ -41,6 +39,7 @@ class vagrant_vm (
   }
 
   include drupal_php
+  include drupal_solr
   include mysql::server
 
   include drush
