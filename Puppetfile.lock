@@ -33,6 +33,8 @@ FORGE
       nodes-php (>= 0.9.0)
       puppetlabs-apache (>= 1.0.0)
       puppetlabs-stdlib (>= 1.0.0)
+    zivtech-drupal_solr (0.0.1)
+      puppetlabs-vcsrepo (>= 0.1.0)
     zivtech-drush (1.1.0)
       nodes-php (>= 0.8.0)
       puppetlabs-concat (>= 1.0.0)
@@ -49,14 +51,6 @@ GIT
   specs:
     zivtech-webadmin (0.0.1)
 
-GIT
-  remote: https://github.com/zivtech/puppet-drupal-solr.git
-  ref: master
-  sha: 2ec6b8d04c33ec1a5ceded3e29442a2a3981370b
-  specs:
-    zivtech-solr (0.0.1)
-      puppetlabs-vcsrepo (>= 0.1.0)
-
 DEPENDENCIES
   maestrodev-wget (>= 0)
   puppetlabs-apt (>= 0)
@@ -67,8 +61,8 @@ DEPENDENCIES
   rodjek-logrotate (>= 0)
   saz-memcached (>= 0)
   zivtech-drupal_php (>= 0)
+  zivtech-drupal_solr (>= 0)
   zivtech-drush (>= 0)
   zivtech-drush_fetcher (>= 0)
-  zivtech-solr (>= 0)
   zivtech-webadmin (>= 0)
 
