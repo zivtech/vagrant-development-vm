@@ -6,3 +6,4 @@ modules/
 .librarian/
 *.sw*
 config.yaml
+hiera/custom.yaml
