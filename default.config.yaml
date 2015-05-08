@@ -1,0 +1,16 @@
+# The hostname that gets set inside the VM.
+hostname: "local"
+# The private IP to provision for this host.
+private_ip: "33.33.33.40"
+# The base box to use to build the puppet work on top of.
+# For the box, `puppetlabs/ubuntu-14.04-64-puppet` should also work.
+box: "puppetlabs/ubuntu-14.04-64-puppet" 
+# The amount of memory (in megabytes) to provision.
+memory: "2048"
+# Set this to false in order to not mount the www folder in this
+# directory inside `/var/www` on the VM.
+sync_folder: true
+# If we detect we are running on windows, whether we should enable
+# the sync folder. Note, this uses VirtualBox folder sharing which
+# is not compatible with symlinks and some other important features.
+sync_file_enabled_on_windows: false

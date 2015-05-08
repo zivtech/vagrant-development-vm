@@ -57,11 +57,12 @@ class vagrantvm {
   }
 
   include drupal_php
+  include mysql::server
+
   include drush
   include drush_fetcher
   include drushphpsh
-  include drush-patchfile
-  include mysql::server
+  include drush_patchfile
 
   $mysql_root_password = hiera('mysql::server::root_password')
 
