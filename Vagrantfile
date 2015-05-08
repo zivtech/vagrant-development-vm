@@ -23,13 +23,14 @@ end
 
 Vagrant.configure('2') do |config|
 
-  config.vm.hostname = params[:hostname]
+  config.vm.hostname = params['hostname']
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ['modifyvm', :id, '--memory', params[:memory]]
+    vb.customize ['modifyvm', :id, '--memory', params['memory']]
   end
 
-  config.vm.network :private_network, ip: params[:private_ip]
+  #config.vm.network :private_network, ip: params[:private_ip]
+  config.vm.network :private_network, ip: params['private_ip']
 
   config.vm.box = params['box']
 
@@ -53,9 +54,9 @@ Vagrant.configure('2') do |config|
 
 
   # NFS sharing does not work on windows, so if this is windows don't try to start it.
-  if not is_windows and params[:sync_folder]
+  if not is_windows and params['sync_folder']
     config.vm.synced_folder 'www', '/var/www', :nfs => true
-  elsif params[:sync_file_enabled_on_windows]
+  elsif params['sync_file_enabled_on_windows']
     # This uses VirtualBox shared folders and symlinks will not work properly.
     config.vm.synced_folder 'www', '/var/www'
   end
