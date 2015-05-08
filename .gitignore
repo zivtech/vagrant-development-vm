@@ -4,5 +4,4 @@ www/*
 .tmp/
 modules/
 .librarian/
-*.swp
-*.swo
+*.sw*
