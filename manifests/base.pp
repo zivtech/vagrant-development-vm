@@ -9,8 +9,7 @@ class {
   'vagrant_vm': stage => main;
 }
 
-class vagrant_vm (
-) {
+class vagrant_vm {
   $user = 'vagrant'
   $group = 'vagrant'
 
@@ -40,6 +39,7 @@ class vagrant_vm (
 
   include drupal_php
   include drupal_solr
+
   include mysql::server
 
   include drush
