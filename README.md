@@ -43,16 +43,16 @@ a new file called `config.yaml` where you can define any value listed below
 (see [default.config.yaml](https://github.com/zivtech/vagrant-development-vm/blob/master/default.config.yaml)
 for formatting options.
 
-- hostname: The hostname that gets set inside the VM. Defaults to `local`.
-- private_ip: The private IP to provision for this host. Defaults to `33.33.33.40`.
-- box:The base box to use to build the puppet work on top of. Commetning out the
+- *hostname*: The hostname that gets set inside the VM. Defaults to `local`.
+- *private_ip*: The private IP to provision for this host. Defaults to `33.33.33.40`.
+- *box*:The base box to use to build the puppet work on top of. Commetning out the
 line below (or overriding in config,yaml) to switch to 12.04 should also work.
 Defaults to `puppetlabs/ubuntu-14.04-64-puppet` though
 `puppetlabs/ubuntu-12.04-64-puppet` is also supported.
-- memory: The amount of memory (in megabytes) to provision. Defaults to `2048`.
-- sync_folder: Set this to false in order to not mount the www folder in this
-directory inside `/var/www` on the VM. Defaults to true.
-- sync_file_enabled_on_windows: If we detect we are running on windows, whether
+- *memory*: The amount of memory (in megabytes) to provision. Defaults to `2048`.
+- *sync_folder*: Set this to false in order to not mount the www folder in this
+directory *inside* `/var/www` on the VM. Defaults to true.
+- *sync_file_enabled_on_windows*: If we detect we are running on windows, whether
 we should enable the sync folder. Note, this uses VirtualBox folder sharing which
 is not compatible with symlinks and some other important features. Defaults to false.
 
