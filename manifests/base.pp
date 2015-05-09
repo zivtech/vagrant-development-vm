@@ -44,7 +44,7 @@ class vagrant_vm {
 
   include drush
   include drush_fetcher
-  include drushphpsh
+  include drush_phpsh
   include drush_patchfile
 
   include redis
