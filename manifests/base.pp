@@ -23,6 +23,16 @@ class vagrant_vm {
     require => Class['webadmin'],
   }
 
+  # If the folder is mounted via NFS we can't change the perms anyway,
+  # but if it is not we want to make it owned by the `vagrant`.
+  if (!$vagrant_share_www) {
+    file { '/var/www':
+      owner   => $user,
+      group   => $group,
+      require => Class['drupal_php'],
+    }
+  }
+
   file { '/etc/apache2/sites-available':
     owner   => $user,
     group   => $group,
