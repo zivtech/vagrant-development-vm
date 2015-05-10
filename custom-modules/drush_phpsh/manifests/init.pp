@@ -1,14 +1,14 @@
 # Inherit from drush because we can't do anything without it
 # and because we want to ensure that the shared commands folder
 # exists and can't redeclare it.
-class drushphpsh inherits drush {
+class drush_phpsh inherits drush {
 
   file { "/usr/src/phpsh_1.3_i386.deb":
     owner => root,
     group => root,
     mode => 644,
     ensure => file,
-    source => "puppet:///modules/drushphpsh/phpsh_1.3_i386.deb",
+    source => "puppet:///modules/drush_phpsh/phpsh_1.3_i386.deb",
   }
 
   file { "/etc/phpsh":
@@ -23,7 +23,7 @@ class drushphpsh inherits drush {
     group => root,
     mode => 755,
     ensure => file,
-    source => "puppet:///modules/drushphpsh/rc.php",
+    source => "puppet:///modules/drush_phpsh/rc.php",
   }
 
   package { "phpsh":

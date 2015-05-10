@@ -14,7 +14,7 @@ class vagrant_vm {
   $group = 'vagrant'
 
   class { 'webadmin':
-    webadminuser => $user,
+    webadminuser  => $user,
     webadmingroup => $group,
   }
 
