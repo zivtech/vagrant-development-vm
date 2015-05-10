@@ -13,9 +13,20 @@ Ubuntu 14.04 server but 12.04 is also supported.  See [#customizing](Customizing
 
 You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org/)
 installed first. The puppet dependencies are managed via
-[librarian-puppet](https://github.com/rodjek/librarian-puppet) which will be managed for you
-if you install the [vagrant-librarian-puppet](https://github.com/mhahn/vagrant-librarian-puppet)
-vagrant plugin. Complete instructions below:
+[librarian-puppet](https://github.com/rodjek/librarian-puppet) which can
+automaticaally be managed for you if you install the
+[vagrant-librarian-puppet](https://github.com/mhahn/vagrant-librarian-puppet) vagrant plugin.
+
+**_NOTE FOR WINDOWS USERS:_** There are known issues with getting `librarian-puppet`
+installed and running on windows and so for Windows users it is recommended that you
+**DO NOT** follow the installation instructions below but instead download the
+most recent full release via zip file from the
+[releases page](https://github.com/zivtech/vagrant-development-vm/releases) instead
+of installing that plugin or cloning the repository from source.  Then you can cd into
+the directory and run vagrant up as normal.
+
+
+Complete instructions below:
 
 ````bash
 vagrant plugin install vagrant-librarian-puppet
@@ -25,7 +36,7 @@ vagrant up
 ````
 You should now have a working Virtual Server! Create a new Drupal site by running `drush fetcher-create yoursite`
 (add the version of drupal as a second argument if you want Drupal 8!). Run `vagrant ssh` to get
-into your VM~
+into your VM.
 
 <a name="customizing" />
 ## Customzing this VM
