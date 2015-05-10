@@ -40,12 +40,45 @@ Vagrant.configure('2') do |config|
   # config directive, delete it to avoid confusing users.
   config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppet/puppet.conf"
 
-  config.librarian_puppet.placeholder_filename = 'README'
+  if Vagrant.has_plugin?("vagrant-librarian-puppet")
+    config.librarian_puppet.placeholder_filename = 'README'
+  elsif not File.exist?('modules/drupal_php/manifests/init.pp')
+    raise Vagrant::Errors::VagrantError.new, "You are not using vagrant-librarian-puppet and have not installed the dependencies."
+  end
+
+  # If vagrant-cachier is installed, use it!
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+    if not is_windows
+      # See https://github.com/fgrehm/vagrant-cachier for details.
+      config.cache.synced_folder_opts = {
+        type: :nfs,
+        mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+      }
+    end
+  end
+
+  # NFS sharing does not work on windows, so if this is windows don't try to start it.
+  vagrant_share_www = "false"
+  if not is_windows and params['sync_folder']
+    config.vm.synced_folder 'www', '/var/www', :nfs => true
+    vagrant_share_www = "true"
+  elsif params['sync_file_enabled_on_windows']
+    # This uses VirtualBox shared folders and symlinks will not work properly.
+    config.vm.synced_folder 'www', '/var/www'
+    vagrant_share_www = "true"
+  end
+
+
   config.vm.provision :puppet do |puppet|
     puppet.module_path = [
       'modules',
       'custom-modules'
     ]
+    puppet.facter = {
+      "vagrant" => "1",
+      "vagrant_share_www" => vagrant_share_www
+    }
     puppet.manifests_path = 'manifests'
     puppet.manifest_file = 'base.pp'
     puppet.hiera_config_path = 'hiera/hiera.yaml'
@@ -53,11 +86,4 @@ Vagrant.configure('2') do |config|
   end
 
 
-  # NFS sharing does not work on windows, so if this is windows don't try to start it.
-  if not is_windows and params['sync_folder']
-    config.vm.synced_folder 'www', '/var/www', :nfs => true
-  elsif params['sync_file_enabled_on_windows']
-    # This uses VirtualBox shared folders and symlinks will not work properly.
-    config.vm.synced_folder 'www', '/var/www'
-  end
 end
