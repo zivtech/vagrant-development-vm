@@ -66,6 +66,10 @@ class vagrant_vm {
     group   => 'vagrant',
   }
 
+  package { 'phpmyadmin':
+    ensure => 'installed',
+  }
+
 }
 
 include vagrant_setup
