@@ -48,6 +48,7 @@ class vagrant_vm {
   }
 
   include drupal_php
+
   include drupal_solr
 
   include mysql::server
