@@ -70,6 +70,10 @@ class vagrant_vm {
     ensure => 'installed',
   }
 
+  package { 'git-sh':
+    ensure => 'installed',
+  }
+
 }
 
 include vagrant_setup
