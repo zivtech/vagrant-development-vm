@@ -39,7 +39,7 @@ You should now have a working Virtual Server! Create a new Drupal site by runnin
 into your VM.
 
 <a name="customizing" />
-## Customzing this VM
+## Customizing this VM
 
 Once this repository have been downloaded, running "vagrant up" from within this
 directory will build the virtual server and provision it.  Two different categories
