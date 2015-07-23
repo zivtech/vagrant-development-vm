@@ -25,7 +25,7 @@ class vagrant_vm {
 
   # If the folder is mounted via NFS we can't change the perms anyway,
   # but if it is not we want to make it owned by the `vagrant`.
-  if (!$vagrant_share_www) {
+  if ($vagrant_share_www == 'false') {
     file { '/var/www':
       owner   => $user,
       group   => $group,
