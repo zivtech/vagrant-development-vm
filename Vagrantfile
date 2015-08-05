@@ -17,9 +17,7 @@ end
 is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 
 # Include our deploy command.
-if not is_windows
-  require File.dirname(__FILE__) + '/ssh-add.rb'
-end
+require File.join(__dir__, '/ssh-add.rb') unless is_windows
 
 Vagrant.configure('2') do |config|
 
