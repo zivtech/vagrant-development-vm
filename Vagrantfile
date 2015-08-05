@@ -6,7 +6,7 @@ require 'yaml'
 require 'rbconfig'
 
 params = YAML::load_file('./default.config.yaml')
- 
+
 # Load new configuration files.
 begin
   params = params.merge YAML::load_file('./config.yaml')
@@ -33,6 +33,7 @@ Vagrant.configure('2') do |config|
   config.vm.network :private_network, ip: params['private_ip']
 
   config.vm.box = params['box']
+  config.vm.box_url = params['box_url']
 
   config.ssh.forward_agent = true
 
