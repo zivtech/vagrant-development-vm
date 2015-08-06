@@ -5,11 +5,11 @@
 require 'yaml'
 require 'rbconfig'
 
-params = YAML::load_file('./default.config.yaml')
- 
+params = YAML::load_file(File.join(__dir__, 'default.config.yaml'))
+
 # Load new configuration files.
 begin
-  params = params.merge YAML::load_file('./config.yaml')
+  params = params.merge YAML::load_file(File.join(__dir__, 'config.yaml'))
 rescue
   # The customization file didn't exist - no worries.
 end
@@ -17,9 +17,7 @@ end
 is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 
 # Include our deploy command.
-if not is_windows
-  require File.dirname(__FILE__) + '/ssh-add.rb'
-end
+require File.join(__dir__, '/ssh-add.rb') unless is_windows
 
 Vagrant.configure('2') do |config|
 
@@ -33,6 +31,7 @@ Vagrant.configure('2') do |config|
   config.vm.network :private_network, ip: params['private_ip']
 
   config.vm.box = params['box']
+  config.vm.box_url = params['box_url']
 
   config.ssh.forward_agent = true
 
