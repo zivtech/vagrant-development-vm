@@ -7,7 +7,7 @@ private_ip: "33.33.33.40"
 # to switch to 12.04.
 box: "puppetlabs/ubuntu-14.04-64-puppet-1.0.0"
 box_url: "https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-14.04-64-puppet/versions/1.0.0/providers/virtualbox.box"
-# Comment out the next two lines, to use 12.04
+# Un-comment the next two lines, to use 12.04
 #box: "puppetlabs/ubuntu-12.04-64-puppet-1.0.0"
 #box_url: "https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-12.04-64-puppet/versions/1.0.0/providers/virtualbox.box"
 # The amount of memory (in megabytes) to provision.
