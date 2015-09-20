@@ -1,5 +1,6 @@
 mysql::server::root_password: 'root'
 drupal_php::server::apache::purge_configs: false
+drupal_php::server::apache::server_default_vhost: false
 drush::git_ref: "master"
 drupal_php::log_errors: true
 drupal_php::memory_limit: 128M

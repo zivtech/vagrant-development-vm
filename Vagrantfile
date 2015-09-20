@@ -35,13 +35,15 @@ Vagrant.configure('2') do |config|
 
   config.ssh.forward_agent = true
 
+  config.vm.provision :shell, inline: "/bin/sed -i '/templatedir/d' /etc/puppet/puppet.conf"
+
   # The puppetlabs vm comes with a puppet.conf that includes a deprecated
   # config directive, delete it to avoid confusing users.
   config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppet/puppet.conf"
 
   if Vagrant.has_plugin?("vagrant-librarian-puppet")
     config.librarian_puppet.placeholder_filename = 'README.md'
-  elsif not File.exist?('modules/drupal_php/manifests/init.pp')
+  elsif not File.exist?(File.join(__dir__, 'modules', 'drupal_php', 'manifests', 'init.pp'))
     raise Vagrant::Errors::VagrantError.new, "You are not using vagrant-librarian-puppet and have not installed the dependencies."
   end
 
