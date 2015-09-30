@@ -5,11 +5,11 @@
 require 'yaml'
 require 'rbconfig'
 
-params = YAML::load_file('./default.config.yaml')
- 
+params = YAML::load_file(File.join(__dir__, 'default.config.yaml'))
+
 # Load new configuration files.
 begin
-  params = params.merge YAML::load_file('./config.yaml')
+  params = params.merge YAML::load_file(File.join(__dir__, 'config.yaml'))
 rescue
   # The customization file didn't exist - no worries.
 end
@@ -17,9 +17,7 @@ end
 is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 
 # Include our deploy command.
-if not is_windows
-  require File.dirname(__FILE__) + '/ssh-add.rb'
-end
+require File.join(__dir__, '/ssh-add.rb') unless is_windows
 
 Vagrant.configure('2') do |config|
 
@@ -33,8 +31,11 @@ Vagrant.configure('2') do |config|
   config.vm.network :private_network, ip: params['private_ip']
 
   config.vm.box = params['box']
+  config.vm.box_url = params['box_url']
 
   config.ssh.forward_agent = true
+
+  config.vm.provision :shell, inline: "/bin/sed -i '/templatedir/d' /etc/puppet/puppet.conf"
 
   # The puppetlabs vm comes with a puppet.conf that includes a deprecated
   # config directive, delete it to avoid confusing users.
@@ -42,7 +43,7 @@ Vagrant.configure('2') do |config|
 
   if Vagrant.has_plugin?("vagrant-librarian-puppet")
     config.librarian_puppet.placeholder_filename = 'README.md'
-  elsif not File.exist?('modules/drupal_php/manifests/init.pp')
+  elsif not File.exist?(File.join(__dir__, 'modules', 'drupal_php', 'manifests', 'init.pp'))
     raise Vagrant::Errors::VagrantError.new, "You are not using vagrant-librarian-puppet and have not installed the dependencies."
   end
 

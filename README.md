@@ -14,7 +14,7 @@ Ubuntu 14.04 server but 12.04 is also supported.  See [#customizing](Customizing
 You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org/)
 installed first. The puppet dependencies are managed via
 [librarian-puppet](https://github.com/rodjek/librarian-puppet) which can
-automaticaally be managed for you if you install the
+automatically be managed for you if you install the
 [vagrant-librarian-puppet](https://github.com/mhahn/vagrant-librarian-puppet) vagrant plugin.
 
 **_NOTE FOR WINDOWS USERS:_** There are known issues with getting `librarian-puppet`
