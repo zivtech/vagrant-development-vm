@@ -7,3 +7,4 @@ class drupal_permissions {
     ensure => file,
     source => "puppet:///modules/drupal_permissions/drupal-perms",
   }
+}
