@@ -66,9 +66,7 @@ class vagrant_vm {
     group   => 'vagrant',
   }
 
-  package { 'phpmyadmin':
-    ensure => 'installed',
-  }
+  include phpmyadmin
 
   package { 'git-sh':
     ensure => 'installed',
