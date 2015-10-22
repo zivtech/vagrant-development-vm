@@ -57,6 +57,7 @@ class vagrant_vm {
   include drush_fetcher
   include drush_phpsh
   include drush_patchfile
+  include drupal_permissions
 
   include redis
 
@@ -66,9 +67,7 @@ class vagrant_vm {
     group   => 'vagrant',
   }
 
-  package { 'phpmyadmin':
-    ensure => 'installed',
-  }
+  include phpmyadmin
 
   package { 'git-sh':
     ensure => 'installed',
