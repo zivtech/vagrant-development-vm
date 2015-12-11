@@ -35,7 +35,7 @@ FORGE
       puppetlabs-stdlib (>= 1.0.0)
     zivtech-drupal_solr (1.0.1)
       puppetlabs-vcsrepo (>= 0.1.0)
-    zivtech-drush (1.1.0)
+    zivtech-drush (1.2.0)
       nodes-php (>= 0.8.0)
       puppetlabs-concat (>= 1.0.0)
       puppetlabs-stdlib (>= 1.0.0)
