@@ -1,0 +1,7 @@
+#About Zivtech Vagrant Development Virtual Machine
+
+The Zivtech Vagrant Development Virtual Machine is a [Vagrant](https://www.vagrantup.com/) project that was developed by [Zivtech](https://www.zivtech.com/) to build a local virtual machine in [VirtualBox](https://www.virtualbox.org/) for developing websites and web applications.
+
+The Zivtech Vagrant Development VM sets up a LAMP (Linux, Apache, MySQL, PHP) web server stack that is configured out of the box to start building websites and other web applications immediately with [Git](https://git-scm.com/) version control. The VM was originally built to develop Drupal websites on a local machine, but can be used to build many types of websites and web applications. 
+
+The VM also contains many helpful tools and settings that are installed and configured by Puppet locally to ensure a development environment that is the same across multiple machines. The VM's configuration can also be modified quickly to switch between an Ubuntu 12.04 and Ubuntu 14.04 installation with Puppet's Hiera YAML configuration. The final built VM mirrors our development and production server configurations for these Ubuntu distributions, which helps reduce issues between development environments during testing and deployment.
