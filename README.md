@@ -1,17 +1,17 @@
 ﻿# Zivtech LAMP Development VM
 
 This repository manages Zivtech's development virtual server. It has a number of
-tools that we use to build Drupal sites. [Drush](https://drupal.org/project/drush)
-is included as well as [Drush Fetcher](https://drupal.org/project/drush_fetcher)
+tools that we use to build Drupal sites. [Drush](https://github.com/drush-ops/drush)
+is included as well as [Drush Fetcher](https://www.drupal.org/project/fetcher)
 which is a tool used to sync copies of Drupal sites between environments.
-There are also other useful features such as a solr server for easy integration with
+There are also other useful features such as an Apache Solr server for easy integration with
 [search api](https://drupal.org/project/search_api_solr) or
 [apachesolr](https://drupal.org/project/apachesolr). By default this tool builds an
 Ubuntu 14.04 server but 12.04 is also supported.  See [#customizing](Customizing This VM below).
 
 ## Installation
 
-You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org/)
+You must have [Vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org/)
 installed first. The puppet dependencies are managed via
 [librarian-puppet](https://github.com/rodjek/librarian-puppet) which can
 automatically be managed for you if you install the
