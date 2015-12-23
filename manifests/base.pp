@@ -77,3 +77,26 @@ class vagrant_vm {
 
 include vagrant_setup
 include vagrant_vm
+
+class { 'apt':
+ always_apt_update => true,
+}
+
+apt::ppa { 'ppa:brightbox/ruby-ng':}
+
+package { 'software-properties-common':
+  ensure  => 'installed',
+}
+
+package { 'ruby2.2':
+  ensure => 'installed'
+}
+
+package { 'ruby2.2-dev':
+  ensure => 'installed'
+}
+
+Apt::Ppa['ppa:brightbox/ruby-ng'] ->
+Package['software-properties-common'] ->
+Package['ruby2.2'] ->
+Package['ruby2.2-dev']
