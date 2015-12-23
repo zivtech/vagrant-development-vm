@@ -97,5 +97,6 @@ package { 'ruby2.2-dev':
 }
 
 Apt::Ppa['ppa:brightbox/ruby-ng'] ->
+Package['software-properties-common'] ->
 Package['ruby2.2'] ->
 Package['ruby2.2-dev']
