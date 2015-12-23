@@ -1,5 +1,5 @@
-# Puppet whines and compains if it doesn't have
-# its puppet users  and apt throws a fit if it's out of date,
+# Puppet whines and complains if it doesn't have
+# its puppet users and apt throws a fit if it's out of date,
 # so we take care of these things first.
 
 stage { 'first': before => Stage['main'] }
@@ -77,3 +77,5 @@ class vagrant_vm {
 
 include vagrant_setup
 include vagrant_vm
+
+class { 'nodejs': }
