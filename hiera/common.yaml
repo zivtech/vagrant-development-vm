@@ -14,4 +14,4 @@ drush_patchfile::git_ref: 'e7ffe4ccbb4c7c768788d0c24e6a18835eb35f74'
 drush::configs:
   patch-file:
     value: patches.make
-drush_fetcher::git_ref: 'a646f51dd6fd7deba9925e213eb0aac1cbf7f1d1'
+drush_fetcher::git_ref: '5d208ba58eecf9c085bccfc6071f7ff21066046b'
