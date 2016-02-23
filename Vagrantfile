@@ -46,6 +46,8 @@ Vagrant.configure('2') do |config|
   # config directive, delete it to avoid confusing users.
   config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppet/puppet.conf"
 
+  config.vm.provision :shell, :inline => "apt-get update --fix-missing"
+
   if Vagrant.has_plugin?("vagrant-librarian-puppet")
     config.librarian_puppet.placeholder_filename = 'README.md'
   elsif not File.exist?(File.join(__dir__, 'modules', 'drupal_php', 'manifests', 'init.pp'))
