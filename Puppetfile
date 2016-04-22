@@ -8,6 +8,7 @@ mod 'puppetlabs-vcsrepo'
 mod 'puppetlabs-mysql'
 mod 'puppetlabs-gcc'
 mod 'puppetlabs-apt'
+mod 'puppetlabs-nodejs'
 
 mod 'maestrodev-wget'
 
