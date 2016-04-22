@@ -3,7 +3,7 @@ drupal_php::server::apache::purge_configs: false
 drupal_php::server::apache::server_default_vhost: false
 drush::git_ref: "master"
 drupal_php::log_errors: true
-drupal_php::memory_limit: 128M
+drupal_php::memory_limit: 256M
 drupal_php::max_execution_time: 30
 drupal_php::post_max_size: '8M'
 drupal_php::upload_max_filesize: 200M
