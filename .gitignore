@@ -7,3 +7,6 @@ modules/
 *.sw*
 config.yaml
 hiera/custom.yaml
+packer/*/builds/*.box
+packer/*/packer_cache/*
+packer/*/http/*
