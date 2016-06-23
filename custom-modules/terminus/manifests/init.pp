@@ -3,9 +3,10 @@ class terminus {
   require php::composer
 
   file { '/usr/share/composer':
-    mode  => '0555',
-    owner => 'root',
-    group => 'root',
+    mode   => '0555',
+    owner  => 'root',
+    group  => 'root',
+    ensure => 'directory',
   }->
 
   exec { 'Install terminus':
