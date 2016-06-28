@@ -54,7 +54,7 @@ a new file called `config.yaml` where you can define any value listed below
 (see [default.config.yaml](https://github.com/zivtech/vagrant-development-vm/blob/master/default.config.yaml)
 for formatting options.
 
-- *hostname*: The hostname that gets set inside the VM. Defaults to `local`.
+- *hostname*: The hostname that gets set inside the VM. Defaults to `vm`.
 - *private_ip*: The private IP to provision for this host. Defaults to `33.33.33.40`.
 - *box*:The base box to use to build the puppet work on top of. Commetning out the
 line below (or overriding in config,yaml) to switch to 12.04 should also work.
