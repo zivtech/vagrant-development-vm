@@ -1,5 +1,7 @@
 # The hostname that gets set inside the VM.
-hostname: "local"
+# When using browsersync for front-end development we need to proxy the vm and the .local hostname is already in use by the native Bonjour app on OSX.
+# Using local for the hostname makes browsersync unusable in this configuration, so we have updated the local hostname to vm instead.
+hostname: "vm"
 # The private IP to provision for this host.
 private_ip: "33.33.33.40"
 # The base box to use to build the puppet work on top of.
