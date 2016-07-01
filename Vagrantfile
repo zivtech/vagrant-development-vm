@@ -23,12 +23,14 @@ Vagrant.configure('2') do |config|
 
   config.vm.hostname = params['hostname']
 
-  config.vm.provider :virtualbox do |vb|
-    vb.customize ['modifyvm', :id, '--memory', params['memory']]
+  config.vm.provider :virtualbox do |v|
+    v.gui = params['gui']
+    v.customize ['modifyvm', :id, '--memory', params['memory']]
   end
 
-  #config.vm.network :private_network, ip: params[:private_ip]
   config.vm.network :private_network, ip: params['private_ip']
+  config.vm.network :private_network, ip: params['private_ipv6'], netmask: '96'
+
 
   config.vm.box = params['box']
   config.vm.box_url = params['box_url']

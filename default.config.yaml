@@ -1,9 +1,13 @@
+# Whether to boot the VM with the GUI.
+gui: false
 # The hostname that gets set inside the VM.
 # When using browsersync for front-end development we need to proxy the vm and the .local hostname is already in use by the native Bonjour app on OSX.
 # Using local for the hostname makes browsersync unusable in this configuration, so we have updated the local hostname to vm instead.
-hostname: "vm"
+hostname: "local.zivtech.com"
 # The private IP to provision for this host.
 private_ip: "33.33.33.40"
+# The private IPv6 to provision for this local host.
+private_ipv6: "fde4:8dba:82e1::c5"
 # The base box to use to build the puppet work on top of.
 # Commenting out the two lines below (or overriding in config,yaml)
 # to switch to 12.04.
