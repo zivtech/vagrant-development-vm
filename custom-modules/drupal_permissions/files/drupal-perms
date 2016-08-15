@@ -58,4 +58,3 @@ chmod -R 2770 $CURRENT/$PRIVATE_FILES_DIR
 
 echo "Making sites folder php files group owned by www-data and exclusively group readable"
 chmod 0550 $CODE_DIR/sites/*/*.php
-chown :www-data $CODE_DIR/sites/*/*.php
