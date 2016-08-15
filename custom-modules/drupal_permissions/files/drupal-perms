@@ -50,11 +50,11 @@ fi
 
 #@TODO Skip public/private files, they get changed in the next step.
 echo "Changing permissions on all files to be sticky user writeable, group writeable, and world readable"
-chmod -R 1775 $CURRENT 
+chmod -R 2775 $CURRENT 
 
 echo "Changing permissions on all ./webroot files to be sticky user writeable, group writeable, and world readable"
-chmod -R 1770 $CURRENT/$PUB_FILES_DIR
-chmod -R 1770 $CURRENT/$PRIVATE_FILES_DIR
+chmod -R 2770 $CURRENT/$PUB_FILES_DIR
+chmod -R 2770 $CURRENT/$PRIVATE_FILES_DIR
 
 echo "Making sites folder php files group owned by www-data and exclusively group readable"
 chmod 0550 $CODE_DIR/sites/*/*.php
