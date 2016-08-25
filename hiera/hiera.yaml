@@ -4,6 +4,7 @@
 
 :hierarchy:
   - custom
+  - "distribution/%{::lsbdistcodename}"
   - common
 
 :yaml:
