@@ -58,6 +58,7 @@ class vagrant_vm {
   include drush_phpsh
   include drush_patchfile
   include drupal_permissions
+  include terminus
 
   include redis
 
