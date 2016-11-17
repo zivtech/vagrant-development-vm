@@ -4,7 +4,7 @@ class drush_patchfile ($git_ref = 'master') {
     require  => Class['drush'],
     ensure   => present,
     provider => git,
-    source   => "https://bitbucket.org/davereid/drush-patchfile.git",
+    source   => "https://bitbucket.org/szeidler/drush-patchfile.git",
     revision => $git_ref,
   }
 

@@ -10,7 +10,7 @@ drupal_php::upload_max_filesize: 200M
 drupal_php::display_errors : 'On'
 drupal_php::log_errors: 'On'
 drupal_php::timezone: 'GMT'
-drush_patchfile::git_ref: 'e7ffe4ccbb4c7c768788d0c24e6a18835eb35f74'
+drush_patchfile::git_ref: '25ccc3683a32da867126a6e17e21524d9b054151'
 drush::configs:
   patch-file:
     value: patches.make
