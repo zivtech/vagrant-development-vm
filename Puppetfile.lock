@@ -51,7 +51,7 @@ FORGE
 GIT
   remote: git://github.com/zivtech/puppet-webadmin.git
   ref: master
-  sha: 56d1236485976c23dbf6a2cda1e8f6fe04d05602
+  sha: ba0bd5c0494846f33f1cf5239c92bf6acce5eee3
   specs:
     zivtech-webadmin (0.0.1)
 
