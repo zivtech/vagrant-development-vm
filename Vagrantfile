@@ -21,39 +21,6 @@ require File.join(__dir__, '/ssh-add.rb') unless is_windows
 
 Vagrant.configure('2') do |config|
 
-  config.vm.hostname = params['hostname']
-
-  config.vm.provider :virtualbox do |vb|
-    vb.customize ['modifyvm', :id, '--memory', params['memory']]
-  end
-
-  #config.vm.network :private_network, ip: params[:private_ip]
-  config.vm.network :private_network, ip: params['private_ip']
-
-  config.vm.box = params['box']
-  config.vm.box_url = params['box_url']
-
-  config.ssh.forward_agent = true
-
-  config.vm.provision "fix-no-tty", type: "shell" do |s|
-    s.privileged = false
-    s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
-  end
-
-  config.vm.provision :shell, inline: "/bin/sed -i '/templatedir/d' /etc/puppet/puppet.conf"
-
-  # The puppetlabs vm comes with a puppet.conf that includes a deprecated
-  # config directive, delete it to avoid confusing users.
-  config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppet/puppet.conf"
-
-  config.vm.provision :shell, :inline => "apt-get update --fix-missing"
-
-  if Vagrant.has_plugin?("vagrant-librarian-puppet")
-    config.librarian_puppet.placeholder_filename = 'README.md'
-  elsif not File.exist?(File.join(__dir__, 'modules', 'drupal_php', 'manifests', 'init.pp'))
-    raise Vagrant::Errors::VagrantError.new, "You are not using vagrant-librarian-puppet and have not installed the dependencies."
-  end
-
   # If vagrant-cachier is installed, use it!
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
@@ -66,6 +33,47 @@ Vagrant.configure('2') do |config|
     end
   end
 
+  config.vm.hostname = params['hostname']
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ['modifyvm', :id, '--memory', params['memory']]
+  end
+
+  #config.vm.network :private_network, ip: params[:private_ip]
+  config.vm.network :private_network, ip: params['private_ip']
+
+  config.vm.box = params['box']
+  config.vm.box_url = params['box_url']
+  config.vm.box_version = params['box_version']
+
+  config.ssh.forward_agent = true
+
+  config.vm.provision "fix-no-tty", type: "shell" do |s|
+    s.privileged = false
+    s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
+  end
+
+  config.vm.provision :shell, inline: "/bin/sed -i '/templatedir/d' /etc/puppetlabs/puppet/puppet.conf"
+
+  # The puppetlabs vm comes with a puppet.conf that includes a deprecated
+  # config directive, delete it to avoid confusing users.
+  config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppetlabs/puppet/puppet.conf"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    if [ ! -f /deb-get ]; then wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb  && sudo touch /deb-get; fi
+    if [ ! -f /deb-run ]; then sudo dpkg -i puppetlabs-release-trusty.deb  && sudo touch /deb-run; fi
+    if [ ! -f /apt-get-run ]; then sudo apt-get update && sudo touch /apt-get-run; fi
+    if [ ! -f /apt-get-puppet ]; then sudo apt-get install --yes --force-yes puppet && sudo touch /apt-get-puppet; fi
+  SHELL
+
+  config.vm.provision :shell, :inline => "apt-get update --fix-missing"
+
+  if Vagrant.has_plugin?("vagrant-librarian-puppet")
+    config.librarian_puppet.placeholder_filename = 'README.md'
+  elsif not File.exist?(File.join(__dir__, 'modules', 'drupal_php', 'manifests', 'init.pp'))
+    raise Vagrant::Errors::VagrantError.new, "You are not using vagrant-librarian-puppet and have not installed the dependencies."
+  end
+
   # NFS sharing does not work on windows, so if this is windows don't try to start it.
   vagrant_share_www = "false"
   if not is_windows and params['sync_folder']
@@ -76,7 +84,6 @@ Vagrant.configure('2') do |config|
     config.vm.synced_folder 'www', '/var/www'
     vagrant_share_www = "true"
   end
-
 
   config.vm.provision :puppet do |puppet|
     puppet.module_path = [
@@ -91,7 +98,7 @@ Vagrant.configure('2') do |config|
     puppet.manifest_file = 'base.pp'
     puppet.hiera_config_path = 'hiera/hiera.yaml'
     puppet.working_directory = '/vagrant'
+    puppet.environment_path = "environments"
   end
-
 
 end

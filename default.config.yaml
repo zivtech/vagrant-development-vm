@@ -5,13 +5,15 @@ hostname: "vm"
 # The private IP to provision for this host.
 private_ip: "33.33.33.40"
 # The base box to use to build the puppet work on top of.
-# Commenting out the two lines below (or overriding in config,yaml)
+# Commenting out the three lines below (or overriding in config,yaml)
 # to switch to 12.04.
-box: "puppetlabs/ubuntu-14.04-64-puppet-1.0.0"
-box_url: "https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-14.04-64-puppet/versions/1.0.0/providers/virtualbox.box"
-# Un-comment the next two lines, to use 12.04
-#box: "puppetlabs/ubuntu-12.04-64-puppet-1.0.0"
-#box_url: "https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-12.04-64-puppet/versions/1.0.0/providers/virtualbox.box"
+box: "puppetlabs/ubuntu-14.04-64-puppet"
+box_url: "https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-14.04-64-puppet"
+box_version: "1.0.3"
+# Un-comment the next three lines, to use 12.04
+#box: "puppetlabs/ubuntu-12.04-64-puppet"
+#box_url: "https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-12.04-64-puppet"
+#box_version: "1.0.3"
 # The amount of memory (in megabytes) to provision.
 memory: "2048"
 # Set this to false in order to not mount the www folder in this
