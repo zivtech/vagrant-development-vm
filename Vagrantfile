@@ -52,12 +52,17 @@ Vagrant.configure('2') do |config|
     s.privileged = false
     s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
   end
-
-  config.vm.provision :shell, inline: "/bin/sed -i '/templatedir/d' /etc/puppetlabs/puppet/puppet.conf"
-
-  # The puppetlabs vm comes with a puppet.conf that includes a deprecated
-  # config directive, delete it to avoid confusing users.
-  config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppetlabs/puppet/puppet.conf"
+  if params['box_version'] > "1.0.0"
+    config.vm.provision :shell, inline: "/bin/sed -i '/templatedir/d' /etc/puppetlabs/puppet/puppet.conf"
+    # The puppetlabs vm comes with a puppet.conf that includes a deprecated
+    # config directive, delete it to avoid confusing users.
+    config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppetlabs/puppet/puppet.conf"
+  elsif
+    config.vm.provision :shell, inline: "/bin/sed -i '/templatedir/d' /etc/puppet/puppet.conf"
+    # The puppetlabs vm comes with a puppet.conf that includes a deprecated
+    # config directive, delete it to avoid confusing users.
+    config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppet/puppet.conf"
+  end
 
   config.vm.provision "shell", inline: <<-SHELL
     if [ ! -f /deb-get ]; then wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb  && sudo touch /deb-get; fi
