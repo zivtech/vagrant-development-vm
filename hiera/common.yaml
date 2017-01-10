@@ -12,7 +12,7 @@ drupal_php::log_errors: 'On'
 drupal_php::timezone: 'GMT'
 php::globals::php_version: '7.1'
 php::package_prefix: 'php%{::php::globals::php_version}-'
-drush_patchfile::git_ref: 'e7ffe4ccbb4c7c768788d0c24e6a18835eb35f74'
+drush_patchfile::git_ref: '642394617e494ccdc81f2319ca5d2266df1c58e4'
 drush::configs:
   patch-file:
     value: patches.make
