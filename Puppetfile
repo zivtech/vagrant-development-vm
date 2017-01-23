@@ -15,10 +15,17 @@ mod 'maestrodev-wget'
 mod 'saz-memcached'
 mod 'rodjek-logrotate'
 
-mod 'zivtech-drush'
 mod 'zivtech-drush_fetcher'
-mod 'zivtech-drupal_php'
+#mod 'zivtech-drupal_php'
 mod 'zivtech-drupal_solr'
+
+mod 'zivtech-drush',
+  :git => "git://github.com/zivtech/puppet-drush.git",
+  :ref => 'php7'
+
+mod 'zivtech-drupal_php',
+  :git => "git://github.com/zivtech/puppet-drupal-php.git",
+  :ref => 'php7'
 
 mod 'zivtech-webadmin',
   :git => "git://github.com/zivtech/puppet-webadmin.git",

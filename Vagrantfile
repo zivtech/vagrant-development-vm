@@ -79,18 +79,21 @@ Vagrant.configure('2') do |config|
 
 
   config.vm.provision :puppet do |puppet|
-    puppet.module_path = [
-      'modules',
-      'custom-modules'
-    ]
     puppet.facter = {
       "vagrant" => "1",
       "vagrant_share_www" => vagrant_share_www
     }
-    puppet.manifests_path = 'manifests'
-    puppet.manifest_file = 'base.pp'
     puppet.hiera_config_path = 'hiera/hiera.yaml'
     puppet.working_directory = '/vagrant'
+    puppet.manifests_path = 'manifests'
+    puppet.module_path = [
+      "modules",
+      "custom-modules"
+    ]
+    puppet.manifests_path = "manifests"
+    puppet.manifest_file = "."
+    puppet.environment_path = "environments"
+    puppet.environment = "dev"
   end
 
 
