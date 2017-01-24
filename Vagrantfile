@@ -34,24 +34,12 @@ Vagrant.configure('2') do |config|
 
   end
 
-  #config.vm.network :private_network, ip: params[:private_ip]
   config.vm.network :private_network, ip: params['private_ip']
 
   config.vm.box = params['box']
   config.vm.box_url = params['box_url']
 
   config.ssh.forward_agent = true
-
-  config.vm.provision "fix-no-tty", type: "shell" do |s|
-    s.privileged = false
-    s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
-  end
-
-  config.vm.provision :shell, inline: "/bin/sed -i '/templatedir/d' /etc/puppet/puppet.conf"
-
-  # The puppetlabs vm comes with a puppet.conf that includes a deprecated
-  # config directive, delete it to avoid confusing users.
-  config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppet/puppet.conf"
 
   config.vm.provision :shell, :inline => "apt-get update --fix-missing"
 
