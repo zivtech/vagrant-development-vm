@@ -15,6 +15,7 @@ box: "zivtech/ubuntu-16.04-server-puppet-4"
 #box_url: "https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-12.04-64-puppet/versions/1.0.0/providers/virtualbox.box"
 # The amount of memory (in megabytes) to provision.
 memory: "2048"
+cpus: 2
 # Set this to false in order to not mount the www folder in this
 # directory inside `/var/www` on the VM.
 sync_folder: true

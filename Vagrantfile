@@ -25,6 +25,13 @@ Vagrant.configure('2') do |config|
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ['modifyvm', :id, '--memory', params['memory']]
+    vb.cpus = params['cpus']
+
+    # Fix slow DNS - http://serverfault.com/questions/495914/vagrant-slow-internet-connection-in-guest
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    vb.customize ["modifyvm", :id, "--ioapic", "on"]
+
   end
 
   #config.vm.network :private_network, ip: params[:private_ip]

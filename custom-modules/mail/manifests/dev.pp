@@ -3,21 +3,21 @@ class mail::dev($dev_mail = '') inherits mail {
   # Main postfix configuration
   file { '/etc/postfix/main.cf':
     require => File['/etc/postfix/virtual-regexp'],
-    ensure => present,
+    ensure  => present,
     content => template("${module_name}/main.cf.erb"),
-    owner => root,
-    group => root,
-    mode => 644,
-    notify => Service['postfix'],
+    owner   => root,
+    group   => root,
+    mode    => '0644',
+    notify  => Service['postfix'],
   }
 
   # This is a required file.  It is empty for us because it
   # allows specific emails to be mapped and we don't have nay.
   file { '/etc/postfix/virtual':
     source => "puppet:///modules/${module_name}/virtual",
-    owner => root,
-    group => root,
-    mode => 644,
+    owner  => root,
+    group  => root,
+    mode   => '0644',
   }
 
   # This file maps all email addresses to user@hostname
@@ -25,15 +25,15 @@ class mail::dev($dev_mail = '') inherits mail {
   # we can send stuff to our own email address.
   file { '/etc/postfix/virtual-regexp':
     content => template("${module_name}/virtual-regexp.erb"),
-    owner => root,
-    group => root,
-    mode => 644,
+    owner   => root,
+    group   => root,
+    mode    => '0644',
   }
 
   # Postfix requires this virtual.db file to modify the email addresses.
   exec { 'postmap_virtual':
     require => File['/etc/postfix/virtual'],
-    unless => "/bin/ls -l /etc/postfix/virtual.db",
+    unless  => "/bin/ls -l /etc/postfix/virtual.db",
     command => "/usr/sbin/postmap /etc/postfix/virtual",
   }
 }

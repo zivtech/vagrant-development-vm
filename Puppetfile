@@ -18,8 +18,6 @@ mod 'rodjek-logrotate'
 mod 'zivtech-drush_fetcher'
 
 
-mod 'landcareresearch-solr', '0.5.3'
-
 mod 'zivtech-drush',
   :git => 'git://github.com/zivtech/puppet-drush.git',
   :ref => 'php7'
