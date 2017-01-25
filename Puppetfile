@@ -29,3 +29,7 @@ mod 'zivtech-drupal_php',
 mod 'zivtech-webadmin',
   :git => 'git://github.com/zivtech/puppet-webadmin.git',
   :ref => 'master'
+
+mod 'zivtech-drupal_solr',
+  :git => 'git://github.com/zivtech/puppet-drupal-solr.git',
+  :ref => '3.x'

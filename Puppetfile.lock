@@ -1,6 +1,8 @@
 FORGE
   remote: https://forge.puppet.com
   specs:
+    computology-packagecloud (0.3.1)
+      puppetlabs-stdlib (>= 0.0.0)
     darin-zypprepo (1.0.2)
     example42-puppi (2.2.1)
     example42-yum (2.1.28)
@@ -26,6 +28,8 @@ FORGE
     puppetlabs-git (0.5.0)
       puppetlabs-stdlib (>= 3.2.0)
     puppetlabs-inifile (1.6.0)
+    puppetlabs-java (1.6.0)
+      puppetlabs-stdlib (< 5.0.0, >= 2.4.0)
     puppetlabs-mysql (3.10.0)
       puppet-staging (< 3.0.0, >= 1.0.1)
       puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
@@ -52,6 +56,15 @@ GIT
       puppetlabs-stdlib (>= 1.0.0)
 
 GIT
+  remote: git://github.com/zivtech/puppet-drupal-solr.git
+  ref: 3.x
+  sha: e88be9b1e8fbe180b03ed3fb0e86d7b98924e5ba
+  specs:
+    zivtech-drupal_solr (3.0.0)
+      computology-packagecloud (>= 0.0.0)
+      puppetlabs-java (>= 0.0.0)
+
+GIT
   remote: git://github.com/zivtech/puppet-drush.git
   ref: php7
   sha: 6777271ab293c0aaf70d2356fb93a0593e4db7cd
@@ -74,12 +87,14 @@ DEPENDENCIES
   puppetlabs-apt (>= 0)
   puppetlabs-gcc (>= 0)
   puppetlabs-git (>= 0)
+  puppetlabs-java (= 1.6.0)
   puppetlabs-mysql (>= 0)
   puppetlabs-nodejs (= 0.8.0)
   puppetlabs-vcsrepo (>= 0)
   rodjek-logrotate (>= 0)
   saz-memcached (>= 0)
   zivtech-drupal_php (>= 0)
+  zivtech-drupal_solr (>= 0)
   zivtech-drush (>= 0)
   zivtech-drush_fetcher (>= 0)
   zivtech-webadmin (>= 0)
