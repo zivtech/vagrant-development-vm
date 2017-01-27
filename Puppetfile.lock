@@ -58,7 +58,7 @@ GIT
 GIT
   remote: git://github.com/zivtech/puppet-drupal-solr.git
   ref: 3.x
-  sha: e88be9b1e8fbe180b03ed3fb0e86d7b98924e5ba
+  sha: ba48d8a367c397d23645753924ab15996d4687e7
   specs:
     zivtech-drupal_solr (3.0.0)
       computology-packagecloud (>= 0.0.0)
@@ -87,7 +87,6 @@ DEPENDENCIES
   puppetlabs-apt (>= 0)
   puppetlabs-gcc (>= 0)
   puppetlabs-git (>= 0)
-  puppetlabs-java (= 1.6.0)
   puppetlabs-mysql (>= 0)
   puppetlabs-nodejs (= 0.8.0)
   puppetlabs-vcsrepo (>= 0)
