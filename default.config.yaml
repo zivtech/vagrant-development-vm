@@ -3,7 +3,7 @@
 # Using local for the hostname makes browsersync unusable in this configuration, so we have updated the local hostname to vm instead.
 hostname: "local.zivtech.com"
 # The private IP to provision for this host.
-private_ip: "33.33.33.40"
+private_ip: "172.16.0.2"
 # The base box to use to build the puppet work on top of.
 # Comment out the two lines below (or overriding in config,yaml)
 # to switch to 12.04.
