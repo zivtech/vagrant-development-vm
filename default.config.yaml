@@ -3,7 +3,8 @@
 # Using local for the hostname makes browsersync unusable in this configuration, so we have updated the local hostname to vm instead.
 hostname: "local.zivtech.com"
 # The private IP to provision for this host.
-private_ip: "172.16.0.2"
+private_ipv4: "172.16.0.2"
+private_ipv6: "2400:cb00:2049:1::a29f:1a63"
 # The base box to use to build the puppet work on top of.
 # Change the version number in the line below (or override in config.yaml)
 # to switch Ubuntu versions.

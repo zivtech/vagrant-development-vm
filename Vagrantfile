@@ -34,7 +34,8 @@ Vagrant.configure('2') do |config|
 
   end
 
-  config.vm.network :private_network, ip: params['private_ip']
+  config.vm.network :private_network, ip: params['private_ipv4']
+  config.vm.network :private_network, ip: params['private_ipv6']
 
   config.vm.box = params['box']
   config.vm.box_url = params['box_url']
