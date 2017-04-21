@@ -1,8 +1,6 @@
 FORGE
   remote: https://forge.puppet.com
   specs:
-    computology-packagecloud (0.3.2)
-      puppetlabs-stdlib (>= 0.0.0)
     darin-zypprepo (1.0.2)
     example42-puppi (2.2.3)
       puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
@@ -15,6 +13,15 @@ FORGE
       puppetlabs-apt (< 3.0.0, >= 1.8.0)
       puppetlabs-inifile (~> 1.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
+    puppet-archive (1.3.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
+    puppet-php (4.0.0)
+      darin-zypprepo (< 2.0.0, >= 1.0.2)
+      example42-yum (< 3.0.0, >= 2.1.28)
+      puppet-archive (< 2.0.0, >= 1.0.0)
+      puppetlabs-apt (< 3.0.0, >= 2.1.0)
+      puppetlabs-inifile (< 2.0.0, >= 1.4.1)
+      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
     puppet-staging (2.2.0)
     puppetlabs-apache (1.11.0)
       puppetlabs-concat (< 3.0.0, >= 1.1.1)
@@ -29,8 +36,6 @@ FORGE
     puppetlabs-git (0.5.0)
       puppetlabs-stdlib (>= 3.2.0)
     puppetlabs-inifile (1.6.0)
-    puppetlabs-java (1.6.0)
-      puppetlabs-stdlib (< 5.0.0, >= 2.4.0)
     puppetlabs-mysql (3.10.0)
       puppet-staging (< 3.0.0, >= 1.0.1)
       puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
@@ -45,11 +50,13 @@ FORGE
     zivtech-drush_fetcher (1.0.3)
       puppetlabs-stdlib (>= 1.0.0)
       zivtech-drush (>= 0.0.0)
+    zivtech-zivtech_apt (0.0.0)
+      puppetlabs-apt (< 3.0.0, >= 1.8.0)
 
 GIT
   remote: git://github.com/zivtech/puppet-drupal-php.git
   ref: php7
-  sha: 00058e735b18f1c872278dc2b7243441c4f531b7
+  sha: a363c4ca30e8e7c05f8dba8b56945a10436e8cc1
   specs:
     zivtech-drupal_php (4.0.0)
       mayflower-php (>= 4.0.0)
@@ -58,12 +65,11 @@ GIT
 
 GIT
   remote: git://github.com/zivtech/puppet-drupal-solr.git
-  ref: 3.x
-  sha: 46f99599afa28a1096549078355173060007ed51
+  ref: 4.x
+  sha: f399edb14bf30a9624bb9cad2954b8f58f94bc1b
   specs:
     zivtech-drupal_solr (3.0.0)
-      computology-packagecloud (>= 0.0.0)
-      puppetlabs-java (>= 0.0.0)
+      zivtech-zivtech_apt (>= 0.0.0)
 
 GIT
   remote: git://github.com/zivtech/puppet-drush.git
@@ -85,6 +91,7 @@ GIT
 
 DEPENDENCIES
   maestrodev-wget (>= 0)
+  puppet-php (= 4.0.0)
   puppetlabs-apt (>= 0)
   puppetlabs-gcc (>= 0)
   puppetlabs-git (>= 0)

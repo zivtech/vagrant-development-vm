@@ -9,6 +9,7 @@ mod 'puppetlabs-mysql'
 mod 'puppetlabs-gcc'
 mod 'puppetlabs-apt'
 mod 'puppetlabs-nodejs', '0.8.0'
+mod 'puppet-php', '4.0.0'
 
 mod 'maestrodev-wget'
 
@@ -32,4 +33,4 @@ mod 'zivtech-webadmin',
 
 mod 'zivtech-drupal_solr',
   :git => 'git://github.com/zivtech/puppet-drupal-solr.git',
-  :ref => '3.x'
+  :ref => '4.x'
