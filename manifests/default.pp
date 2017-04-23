@@ -65,6 +65,12 @@ class vagrant_vm {
     value => 'fpm',
   }
 
+  drush::config { 'fetcher_server_fpm_url':
+    file  => 'fetcher',
+    key   => "fetcher']['server.fpm_url",
+    value => '127.0.0.1:9001',
+  }
+
   include drupal_permissions
   include terminus
   include redis
