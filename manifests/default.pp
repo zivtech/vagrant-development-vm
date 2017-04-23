@@ -59,6 +59,12 @@ class vagrant_vm {
   include drush_phpsh
   include drush_patchfile
 
+  drush::config { 'fetcher_server_sapi':
+    file  => 'fetcher',
+    key   => "fetcher']['server.sapi",
+    value => 'fpm',
+  }
+
   include drupal_permissions
   include terminus
   include redis
