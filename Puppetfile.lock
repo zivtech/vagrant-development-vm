@@ -56,7 +56,7 @@ FORGE
 GIT
   remote: git://github.com/zivtech/puppet-drupal-php.git
   ref: php7
-  sha: a363c4ca30e8e7c05f8dba8b56945a10436e8cc1
+  sha: 22de9081590f7ea1fd15836aec5350bd2cf8048e
   specs:
     zivtech-drupal_php (4.0.0)
       mayflower-php (>= 4.0.0)
