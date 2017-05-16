@@ -25,26 +25,22 @@ Vagrant.configure('2') do |config|
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ['modifyvm', :id, '--memory', params['memory']]
+    vb.cpus = params['cpus']
+
+    # Fix slow DNS - http://serverfault.com/questions/495914/vagrant-slow-internet-connection-in-guest
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    vb.customize ["modifyvm", :id, "--ioapic", "on"]
+
   end
 
-  #config.vm.network :private_network, ip: params[:private_ip]
-  config.vm.network :private_network, ip: params['private_ip']
+  config.vm.network :private_network, ip: params['private_ipv4']
+  config.vm.network :private_network, ip: params['private_ipv6']
 
   config.vm.box = params['box']
   config.vm.box_url = params['box_url']
 
   config.ssh.forward_agent = true
-
-  config.vm.provision "fix-no-tty", type: "shell" do |s|
-    s.privileged = false
-    s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
-  end
-
-  config.vm.provision :shell, inline: "/bin/sed -i '/templatedir/d' /etc/puppet/puppet.conf"
-
-  # The puppetlabs vm comes with a puppet.conf that includes a deprecated
-  # config directive, delete it to avoid confusing users.
-  config.vm.provision :shell, :inline => "/bin/sed -i '/templatedir=\(.*\)/d' /etc/puppet/puppet.conf"
 
   config.vm.provision :shell, :inline => "apt-get update --fix-missing"
 
@@ -79,18 +75,21 @@ Vagrant.configure('2') do |config|
 
 
   config.vm.provision :puppet do |puppet|
-    puppet.module_path = [
-      'modules',
-      'custom-modules'
-    ]
     puppet.facter = {
       "vagrant" => "1",
       "vagrant_share_www" => vagrant_share_www
     }
-    puppet.manifests_path = 'manifests'
-    puppet.manifest_file = 'base.pp'
     puppet.hiera_config_path = 'hiera/hiera.yaml'
     puppet.working_directory = '/vagrant'
+    puppet.manifests_path = 'manifests'
+    puppet.module_path = [
+      "modules",
+      "custom-modules"
+    ]
+    puppet.manifests_path = "manifests"
+    puppet.manifest_file = "."
+    puppet.environment_path = "environments"
+    puppet.environment = "dev"
   end
 
 

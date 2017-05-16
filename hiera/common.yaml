@@ -1,17 +1,19 @@
 mysql::server::root_password: 'root'
 drupal_php::server::apache::purge_configs: false
 drupal_php::server::apache::server_default_vhost: false
-drush::git_ref: "master"
+drush::git_ref: "8.x"
 drupal_php::log_errors: true
-drupal_php::memory_limit: 256M
-drupal_php::max_execution_time: 30
+drupal_php::memory_limit_server: 256M
+drupal_php::max_execution_time_server: 30
 drupal_php::post_max_size: '8M'
 drupal_php::upload_max_filesize: 200M
 drupal_php::display_errors : 'On'
 drupal_php::log_errors: 'On'
 drupal_php::timezone: 'GMT'
+php::globals::php_version: '7.1'
+php::package_prefix: 'php%{::php::globals::php_version}-'
 drush_patchfile::git_ref: 'e7ffe4ccbb4c7c768788d0c24e6a18835eb35f74'
 drush::configs:
   patch-file:
     value: patches.make
-drush_fetcher::git_ref: '5d208ba58eecf9c085bccfc6071f7ff21066046b'
+drush_fetcher::git_ref: '0ebf8cc9c1ba8d57e4a5843d0c5566b113b6c4af'

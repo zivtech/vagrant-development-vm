@@ -1,19 +1,17 @@
 # The hostname that gets set inside the VM.
 # When using browsersync for front-end development we need to proxy the vm and the .local hostname is already in use by the native Bonjour app on OSX.
 # Using local for the hostname makes browsersync unusable in this configuration, so we have updated the local hostname to vm instead.
-hostname: "vm"
+hostname: "local.zivtech.com"
 # The private IP to provision for this host.
-private_ip: "33.33.33.40"
+private_ipv4: "172.16.0.2"
+private_ipv6: "2400:cb00:2049:1::a29f:1a63"
 # The base box to use to build the puppet work on top of.
-# Commenting out the two lines below (or overriding in config,yaml)
-# to switch to 12.04.
-box: "puppetlabs/ubuntu-14.04-64-puppet-1.0.0"
-box_url: "https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-14.04-64-puppet/versions/1.0.0/providers/virtualbox.box"
-# Un-comment the next two lines, to use 12.04
-#box: "puppetlabs/ubuntu-12.04-64-puppet-1.0.0"
-#box_url: "https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-12.04-64-puppet/versions/1.0.0/providers/virtualbox.box"
+# Change the version number in the line below (or override in config.yaml)
+# to switch Ubuntu versions.
+box: "zivtech/ubuntu-16.04-server-puppet-4"
 # The amount of memory (in megabytes) to provision.
 memory: "2048"
+cpus: 2
 # Set this to false in order to not mount the www folder in this
 # directory inside `/var/www` on the VM.
 sync_folder: true

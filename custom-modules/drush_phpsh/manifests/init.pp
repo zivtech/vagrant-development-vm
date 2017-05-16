@@ -6,7 +6,7 @@ class drush_phpsh inherits drush {
   file { "/usr/src/phpsh_1.3_i386.deb":
     owner => root,
     group => root,
-    mode => 644,
+    mode => '0644',
     ensure => file,
     source => "puppet:///modules/drush_phpsh/phpsh_1.3_i386.deb",
   }
@@ -14,14 +14,14 @@ class drush_phpsh inherits drush {
   file { "/etc/phpsh":
     owner => root,
     group => root,
-    mode => 755,
+    mode => '0755',
     ensure => directory,
   }
 
   file { "/etc/phpsh/rc.php":
     owner => root,
     group => root,
-    mode => 755,
+    mode => '0755',
     ensure => file,
     source => "puppet:///modules/drush_phpsh/rc.php",
   }

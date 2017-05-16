@@ -3,11 +3,11 @@
 # so we take care of these things first.
 
 stage { 'first': before => Stage['main'] }
-
 class {
   'vagrant_setup': stage => first;
   'vagrant_vm': stage => main;
 }
+
 
 class vagrant_vm {
   $user = 'vagrant'
@@ -22,6 +22,8 @@ class vagrant_vm {
     dev_mail => "${user}@${hostname}",
     require => Class['webadmin'],
   }
+  /*
+  */
 
   # If the folder is mounted via NFS we can't change the perms anyway,
   # but if it is not we want to make it owned by the `vagrant`.
@@ -47,19 +49,30 @@ class vagrant_vm {
     require => Class['drupal_php'],
   }
 
-  include drupal_php
-
-  include drupal_solr
-
   include mysql::server
+
+  include drupal_php
+  include drupal_solr
 
   include drush
   include drush_fetcher
   include drush_phpsh
   include drush_patchfile
+
+  drush::config { 'fetcher_server_sapi':
+    file  => 'fetcher',
+    key   => "fetcher']['server.sapi",
+    value => 'fpm',
+  }
+
+  drush::config { 'fetcher_server_fpm_url':
+    file  => 'fetcher',
+    key   => "fetcher']['server.fpm_url",
+    value => '127.0.0.1:9001',
+  }
+
   include drupal_permissions
   include terminus
-
   include redis
 
   file { '/home/vagrant/.my.cnf':
@@ -74,9 +87,13 @@ class vagrant_vm {
     ensure => 'installed',
   }
 
+  class { 'nodejs': }->
+  file { '/usr/bin/node':
+    ensure => 'link',
+    target => '/usr/bin/nodejs'
+  }
 }
 
 include vagrant_setup
 include vagrant_vm
 
-class { 'nodejs': }

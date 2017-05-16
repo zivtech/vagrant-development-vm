@@ -1,7 +1,5 @@
 class terminus {
 
-  require php::composer
-
   file { '/usr/share/composer':
     mode   => '0555',
     owner  => 'root',
@@ -15,6 +13,11 @@ class terminus {
     ],
     command     => '/usr/local/bin/composer global require pantheon-systems/terminus',
     creates     => '/usr/share/composer/vendor/bin/terminus',
+    require     => [
+      Class['php'],
+      Class['php::composer'],
+    ],
+
   }->
 
   file { '/usr/local/bin/terminus':
