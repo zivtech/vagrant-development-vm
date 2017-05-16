@@ -25,11 +25,11 @@ most recent full release via zip file from the
 of installing that plugin or cloning the repository from source.  Then you can cd into
 the directory and run vagrant up as normal.
 
-
 Complete instructions below:
 
 ````bash
-vagrant plugin install vagrant-librarian-puppet
+sudo gem install puppet facter librarian-puppet
+librarian-puppet install
 git clone https://github.com/zivtech/vagrant-development-vm.git myvm
 cd myvm
 vagrant up
