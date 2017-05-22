@@ -7,7 +7,7 @@ which is a tool used to sync copies of Drupal sites between environments.
 There are also other useful features such as an Apache Solr server for easy integration with
 [search api](https://drupal.org/project/search_api_solr) or
 [apachesolr](https://drupal.org/project/apachesolr). By default this tool builds an
-Ubuntu 14.04 server but 12.04 is also supported.  See [#customizing](Customizing This VM below).
+Ubuntu 14.04 server but 12.04 is also supported.  See [Customizing This VM below](#customizing).
 
 ## Installation
 
@@ -28,17 +28,18 @@ the directory and run vagrant up as normal.
 
 Complete instructions below:
 
-````bash
+```bash
 vagrant plugin install vagrant-librarian-puppet
 git clone git@github.com:zivtech/vagrant-development-vm.git myvm
 cd myvm
 vagrant up
-````
+```
 You should now have a working Virtual Server! Create a new Drupal site by running `drush fetcher-create yoursite`
 (add the version of drupal as a second argument if you want Drupal 8!). Run `vagrant ssh` to get
 into your VM.
 
 <a name="customizing" />
+
 ## Customizing this VM
 
 Once this repository have been downloaded, running "vagrant up" from within this
