@@ -29,9 +29,9 @@ Complete instructions below:
 
 ````bash
 sudo gem install puppet facter librarian-puppet
-librarian-puppet install
 git clone https://github.com/zivtech/vagrant-development-vm.git myvm
 cd myvm
+librarian-puppet install
 vagrant up
 ````
 You should now have a working Virtual Server! Create a new Drupal site by running `drush fetcher-create yoursite`
