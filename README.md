@@ -71,7 +71,7 @@ is not compatible with symlinks and some other important features. Defaults to f
 
 This project uses [puppet](https://puppetlabs.com/) to configure the virtual server.
 Many of the common tunables for a Drupal server are set in
-[hiera/common.yaml](https://github.com/zivtech/vagrant-development-vm/blob/master/hiera/hiera.yaml)
+[hiera/common.yaml](https://github.com/zivtech/vagrant-development-vm/blob/master/hiera/common.yaml)
 and they can be overridden by creating a new file at `hiera/custom.yaml`
 and copying any line you would like to override into the second file.
 Any parameter on any of the classes utilized in this setup can be overridden using
