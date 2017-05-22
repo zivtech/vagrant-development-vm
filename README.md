@@ -30,7 +30,7 @@ Complete instructions below:
 
 ````bash
 vagrant plugin install vagrant-librarian-puppet
-git clone https://github.com/zivtech/vagrant-development-vm.git myvm
+git clone git@github.com:zivtech/vagrant-development-vm.git myvm
 cd myvm
 vagrant up
 ````
