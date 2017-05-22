@@ -7,7 +7,7 @@ which is a tool used to sync copies of Drupal sites between environments.
 There are also other useful features such as an Apache Solr server for easy integration with
 [search api](https://drupal.org/project/search_api_solr) or
 [apachesolr](https://drupal.org/project/apachesolr). By default this tool builds an
-Ubuntu 14.04 server but 12.04 is also supported.  See [Customizing This VM below](#customizing).
+Ubuntu 16.04 server.  See [#customizing](Customizing This VM below).
 
 ## Installation
 
@@ -25,15 +25,15 @@ most recent full release via zip file from the
 of installing that plugin or cloning the repository from source.  Then you can cd into
 the directory and run vagrant up as normal.
 
-
 Complete instructions below:
 
-```bash
-vagrant plugin install vagrant-librarian-puppet
-git clone git@github.com:zivtech/vagrant-development-vm.git myvm
+````bash
+sudo gem install puppet facter librarian-puppet
+librarian-puppet install
+git clone https://github.com/zivtech/vagrant-development-vm.git myvm
 cd myvm
 vagrant up
-```
+````
 You should now have a working Virtual Server! Create a new Drupal site by running `drush fetcher-create yoursite`
 (add the version of drupal as a second argument if you want Drupal 8!). Run `vagrant ssh` to get
 into your VM.
@@ -56,11 +56,8 @@ a new file called `config.yaml` where you can define any value listed below
 for formatting options.
 
 - *hostname*: The hostname that gets set inside the VM. Defaults to `vm`.
-- *private_ip*: The private IP to provision for this host. Defaults to `33.33.33.40`.
-- *box*:The base box to use to build the puppet work on top of. Commetning out the
-line below (or overriding in config,yaml) to switch to 12.04 should also work.
-Defaults to `puppetlabs/ubuntu-14.04-64-puppet` though
-`puppetlabs/ubuntu-12.04-64-puppet` is also supported.
+- *private_ipv4*: The private IP to provision for this host. Defaults to `172.16.0.2`.
+- *box*:The base box to use to build the puppet work on top of. Defaults to `zivtech/ubuntu-16.04-server-puppet-4` 
 - *memory*: The amount of memory (in megabytes) to provision. Defaults to `2048`.
 - *sync_folder*: Set this to false in order to not mount the www folder in this
 directory *inside* `/var/www` on the VM. Defaults to true.
@@ -72,7 +69,7 @@ is not compatible with symlinks and some other important features. Defaults to f
 
 This project uses [puppet](https://puppetlabs.com/) to configure the virtual server.
 Many of the common tunables for a Drupal server are set in
-[hiera/common.yaml](https://github.com/zivtech/vagrant-development-vm/blob/master/hiera/common.yaml)
+[hiera/common.yaml](https://github.com/zivtech/vagrant-development-vm/blob/master/hiera/hiera.yaml)
 and they can be overridden by creating a new file at `hiera/custom.yaml`
 and copying any line you would like to override into the second file.
 Any parameter on any of the classes utilized in this setup can be overridden using
