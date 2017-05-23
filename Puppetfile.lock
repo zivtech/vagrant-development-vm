@@ -13,6 +13,10 @@ FORGE
       puppetlabs-apt (< 3.0.0, >= 1.8.0)
       puppetlabs-inifile (~> 1.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
+    nodes-php (0.9.0)
+      puppetlabs-apt (> 0.0.0)
+      puppetlabs-inifile (> 0.0.0)
+      puppetlabs-stdlib (> 0.0.0)
     puppet-archive (1.3.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
     puppet-php (4.0.0)
@@ -47,40 +51,22 @@ FORGE
     saz-memcached (3.0.1)
       puppetlabs-firewall (< 2.0.0, >= 0.1.0)
       puppetlabs-stdlib (< 6.0.0, >= 4.6.0)
+    zivtech-drupal_php (5.0.0)
+      puppet-php (>= 4.0.0)
+      puppetlabs-apache (>= 1.10.0)
+      puppetlabs-stdlib (>= 1.0.0)
+    zivtech-drupal_solr (4.0.1)
+      zivtech-zivtech_apt (>= 0.0.0)
+    zivtech-drush (1.2.1)
+      nodes-php (>= 0.8.0)
+      puppetlabs-concat (>= 1.0.0)
+      puppetlabs-stdlib (>= 1.0.0)
+      puppetlabs-vcsrepo (>= 0.0.0)
     zivtech-drush_fetcher (1.0.3)
       puppetlabs-stdlib (>= 1.0.0)
       zivtech-drush (>= 0.0.0)
     zivtech-zivtech_apt (0.0.0)
       puppetlabs-apt (< 3.0.0, >= 1.8.0)
-
-GIT
-  remote: git://github.com/zivtech/puppet-drupal-php.git
-  ref: php7
-  sha: 7fee1e28c84ccffbe93c880bd37bd1cde389bd1c
-  specs:
-    zivtech-drupal_php (4.0.0)
-      mayflower-php (>= 4.0.0)
-      puppetlabs-apache (>= 1.10.0)
-      puppetlabs-stdlib (>= 1.0.0)
-
-GIT
-  remote: git://github.com/zivtech/puppet-drupal-solr.git
-  ref: 4.x
-  sha: f399edb14bf30a9624bb9cad2954b8f58f94bc1b
-  specs:
-    zivtech-drupal_solr (3.0.0)
-      zivtech-zivtech_apt (>= 0.0.0)
-
-GIT
-  remote: git://github.com/zivtech/puppet-drush.git
-  ref: php7
-  sha: 6777271ab293c0aaf70d2356fb93a0593e4db7cd
-  specs:
-    zivtech-drush (1.2.1)
-      puppetlabs-concat (>= 1.0.0)
-      puppetlabs-stdlib (>= 1.0.0)
-      puppetlabs-vcsrepo (>= 0)
-      zivtech-drupal_php (>= 3.4.1)
 
 GIT
   remote: git://github.com/zivtech/puppet-webadmin.git
