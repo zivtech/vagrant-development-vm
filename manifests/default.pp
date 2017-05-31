@@ -22,8 +22,6 @@ class vagrant_vm {
     dev_mail => "${user}@${hostname}",
     require => Class['webadmin'],
   }
-  /*
-  */
 
   # If the folder is mounted via NFS we can't change the perms anyway,
   # but if it is not we want to make it owned by the `vagrant`.

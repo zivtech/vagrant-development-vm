@@ -65,7 +65,12 @@ Vagrant.configure('2') do |config|
   # NFS sharing does not work on windows, so if this is windows don't try to start it.
   vagrant_share_www = "false"
   if not is_windows and params['sync_folder']
-    config.vm.synced_folder 'www', '/var/www', :nfs => true
+    if Vagrant.has_plugin?("vagrant-bindfs")
+      config.vm.synced_folder 'www', '/var/lib/host-mount', :nfs => true
+      config.bindfs.bind_folder "/var/lib/host-mount", "/var/www"
+    else
+      config.vm.synced_folder 'www', '/var/www', :nfs => true
+    end
     vagrant_share_www = "true"
   elsif params['sync_file_enabled_on_windows']
     # This uses VirtualBox shared folders and symlinks will not work properly.
