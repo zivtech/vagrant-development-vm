@@ -8,7 +8,7 @@ class mailhog {
     ensure => 'running',
   }
 
-  wget::fetch { "download mailhog":
+  wget::fetch { 'download mailhog':
     source      => 'https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64',
     destination => '/usr/local/bin/mailhog',
     timeout     => 0,
@@ -39,7 +39,7 @@ class mailhog {
   }
 
 
-  wget::fetch { "download mhsendmail":
+  wget::fetch { 'download mhsendmail':
     source      => 'https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64',
     destination => '/usr/local/bin/mhsendmail',
     timeout     => 0,
