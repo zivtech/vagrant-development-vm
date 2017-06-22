@@ -32,12 +32,12 @@ class mailhog {
     command => '/bin/systemctl daemon-reload'
   }
 
-  file { '/etc/systemd/system/multi-user.target.wants/mailhog.service':
-    ensure  => 'link',
-    source  => '/etc/systemd/system/mailhog.service',
-    require => File['/etc/systemd/system/mailhog.service'],
+  service { 'mailhog':
+    provider => 'systemd',
+    enable   => true,
+    ensure   => 'running',
+    require  => File['/etc/systemd/system/mailhog.service'],
   }
-
 
   wget::fetch { 'download mhsendmail':
     source      => 'https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64',
