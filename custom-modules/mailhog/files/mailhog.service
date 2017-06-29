@@ -1,0 +1,9 @@
+[Unit]
+Description=Start Mailhog Web Server
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/mailhog
+
+[Install]
+WantedBy=multi-user.target

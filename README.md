@@ -9,6 +9,11 @@ There are also other useful features such as an Apache Solr server for easy inte
 [apachesolr](https://drupal.org/project/apachesolr). By default this tool builds an
 Ubuntu 16.04 server.  See [#customizing](Customizing This VM below).
 
+## Features
+
+- Automatically routes *.local.zivtech.com to the vm.
+- [Mailhog](https://github.com/mailhog/MailHog) allows viewing of local mail at [http://mailhog.local.zivtech.com:8025](http://mailhog.local.zivtech.com:8025/)
+
 ## Installation
 
 You must have [Vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org/)
@@ -38,9 +43,7 @@ You should now have a working Virtual Server! Create a new Drupal site by runnin
 (add the version of drupal as a second argument if you want Drupal 8!). Run `vagrant ssh` to get
 into your VM.
 
-<a name="customizing" />
-
-## Customizing this VM
+## Customizing this VM <a name="customizing"></a>
 
 Once this repository have been downloaded, running "vagrant up" from within this
 directory will build the virtual server and provision it.  Two different categories
@@ -57,7 +60,7 @@ for formatting options.
 
 - *hostname*: The hostname that gets set inside the VM. Defaults to `vm`.
 - *private_ipv4*: The private IP to provision for this host. Defaults to `172.16.0.2`.
-- *box*:The base box to use to build the puppet work on top of. Defaults to `zivtech/ubuntu-16.04-server-puppet-4` 
+- *box*:The base box to use to build the puppet work on top of. Defaults to `zivtech/ubuntu-16.04-server-puppet-4`
 - *memory*: The amount of memory (in megabytes) to provision. Defaults to `2048`.
 - *sync_folder*: Set this to false in order to not mount the www folder in this
 directory *inside* `/var/www` on the VM. Defaults to true.

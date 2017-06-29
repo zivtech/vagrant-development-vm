@@ -19,7 +19,7 @@ mod 'rodjek-logrotate'
 mod 'zivtech-drupal_php'
 mod 'zivtech-drupal_solr'
 mod 'zivtech-drush_fetcher'
-mod 'zivtech-drush'
+mod 'zivtech-drush', '1.4.0'
 
 mod 'zivtech-webadmin',
   :git => 'git://github.com/zivtech/puppet-webadmin.git',

@@ -18,13 +18,6 @@ class vagrant_vm {
     webadmingroup => $group,
   }
 
-  class { 'mail::dev':
-    dev_mail => "${user}@${hostname}",
-    require => Class['webadmin'],
-  }
-  /*
-  */
-
   # If the folder is mounted via NFS we can't change the perms anyway,
   # but if it is not we want to make it owned by the `vagrant`.
   if ($vagrant_share_www == 'false') {
@@ -74,6 +67,7 @@ class vagrant_vm {
   include drupal_permissions
   include terminus
   include redis
+  include mailhog
 
   file { '/home/vagrant/.my.cnf':
     content => "[client]\nuser=root\nhost=localhost\npassword='${mysql::server::root_password}'\n",
@@ -96,4 +90,3 @@ class vagrant_vm {
 
 include vagrant_setup
 include vagrant_vm
-
