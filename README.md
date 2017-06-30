@@ -33,7 +33,7 @@ the directory and run vagrant up as normal.
 Complete instructions below:
 
 ````bash
-sudo gem install puppet facter librarian-puppet
+sudo gem install puppet facter hiera librarian-puppet --no-document
 git clone https://github.com/zivtech/vagrant-development-vm.git myvm
 cd myvm
 librarian-puppet install
