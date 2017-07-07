@@ -9,7 +9,7 @@ drupal_php::max_execution_time_server: 30
 drupal_php::memory_limit_server: 256M
 drupal_php::post_max_size: '8M'
 drupal_php::server::apache::mpm_module: event
-drupal_php::timezone: 'America/New_York'
+drupal_php::timezone: 'UTC'
 drupal_php::upload_max_filesize: 200M
 php::globals::php_version: '7.1'
 php::package_prefix: 'php%{::php::globals::php_version}-'
