@@ -16,11 +16,17 @@ Ubuntu 16.04 server.  See [#customizing](Customizing This VM below).
 
 ## Installation
 
+### Dependencies
 You must have [Vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org/)
-installed first. The puppet dependencies are managed via
+installed first. 
+If they are already installed, **update Vagrant and Virtualbox** before you continue.
+
+The puppet dependencies are managed via
 [librarian-puppet](https://github.com/rodjek/librarian-puppet) which can
 automatically be managed for you if you install the
 [vagrant-librarian-puppet](https://github.com/mhahn/vagrant-librarian-puppet) vagrant plugin.
+
+
 
 **_NOTE FOR WINDOWS USERS:_** There are known issues with getting `librarian-puppet`
 installed and running on windows and so for Windows users it is recommended that you
