@@ -26,4 +26,4 @@ drupal_php::display_errors : 'On'
 
 drupal_php::log_errors: 'On'
 
-drupal_php::timezone: 'America/New_York'
+drupal_php::timezone: 'UTC'
