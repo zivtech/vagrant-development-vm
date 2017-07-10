@@ -84,6 +84,9 @@ Any parameter on any of the classes utilized in this setup can be overridden usi
 overrides needed by this project or settings listed there for your easy reference in
 tuning the VM.
 
+#### Fetcher Server Configuration
+If you use a Fetcher Server, set its url as 'info_fetcher.config' 'host' in your hiera/custom.yaml file. See hiera/common.yaml.
+
 ## Common Issues
 
 On non-windows host systems, Vagrant tries to mount a shared NFS directory to the host
