@@ -58,13 +58,15 @@ class mailhog {
   }
 
   file_line { 'mhsendmail php.ini':
-    ensure => present,
-    path   => '/etc/php/7.1/fpm/php.ini',
-    line   => 'sendmail_path = /usr/local/bin/mhsendmail',
-    match  => '^;?sendmail_path',
-    notify => [
+    ensure  => present,
+    path    => '/etc/php/7.1/fpm/php.ini',
+    line    => 'sendmail_path = /usr/local/bin/mhsendmail',
+    match   => '^;?sendmail_path',
+    require => Class['drupal_php::fpm'],
+    notify  => [
       Service['httpd'],
       Service['php7.1-fpm'],
+      Class['::php::fpm::service'],
     ],
   }
 
