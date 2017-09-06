@@ -1,12 +1,20 @@
 class mailhog {
 
   package { 'postfix':
-    ensure => 'present',
+    ensure => 'absent',
   }->
 
-  service { 'postfix':
-    ensure => 'running',
-  }
+  file { '/etc/network/if-up.d/postfix':
+    ensure => 'present',
+    mode   => '0755',
+    content => "#! /bin/bash\nexit 0",
+  }->
+
+  file { '/etc/network/if-down.d/postfix':
+    ensure => 'present',
+    mode   => '0755',
+    content => "#! /bin/bash\nexit 0",
+  }->
 
   wget::fetch { 'download mailhog':
     source      => 'https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64',
