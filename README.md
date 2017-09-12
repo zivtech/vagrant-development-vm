@@ -1,18 +1,23 @@
 ﻿# Zivtech LAMP Development VM
 
-This repository manages Zivtech's development virtual server. It has a number of
-tools that we use to build Drupal sites. [Drush](https://github.com/drush-ops/drush)
-is included as well as [Drush Fetcher](https://www.drupal.org/project/fetcher)
-which is a tool used to sync copies of Drupal sites between environments.
-There are also other useful features such as an Apache Solr server for easy integration with
-[search api](https://drupal.org/project/search_api_solr) or
-[apachesolr](https://drupal.org/project/apachesolr). By default this tool builds an
-Ubuntu 16.04 server.  See [#customizing](Customizing This VM below).
+This repository manages code powering Zivtech's development virtual machine. 
+It was designed by the team at [Zivtech](https://www.zivtech.com/) to mimic most production 
+hosting environments to reduce errors between local development and production deployment. 
+It has a number of tools that Zivtech uses to build Drupal sites and web applications. 
+
+By default this VM builds an Ubuntu 16.04 server.  
+See [Customizing This VM below](#customizing-this-vm).
 
 ## Features
 
+- Apache Solr with integration for [search api](https://drupal.org/project/search_api_solr) or 
+[apachesolr](https://drupal.org/project/apachesolr).
 - Automatically routes *.local.zivtech.com to the vm.
-- [Mailhog](https://github.com/mailhog/MailHog) allows viewing of local mail at [http://mailhog.local.zivtech.com:8025](http://mailhog.local.zivtech.com:8025/)
+- [Drush](https://github.com/drush-ops/drush) allows for management of sites through command line.
+- [Drush Fetcher](https://www.drupal.org/project/fetcher) 
+which is a tool used to sync copies of Drupal sites between environments.
+- [Mailhog](https://github.com/mailhog/MailHog) allows viewing of local mail at 
+[http://mailhog.local.zivtech.com:8025](http://mailhog.local.zivtech.com:8025/)
 
 ## Installation
 
@@ -29,18 +34,37 @@ Until a solution comes from vagrant, or a more workable solution is found on our
 
 At this point, you can continue your install using the directions below.
 
+**_NOTE FOR WINDOWS USERS:_** There are known issues with getting 
+[librarian-puppet](https://github.com/rodjek/librarian-puppet)
+installed and running on Windows, so for Windows users it is recommended that you
+**DO NOT** follow the installation instructions below but instead download the
+most recent full release via zip file from the
+[releases page](https://github.com/zivtech/vagrant-development-vm/releases) instead
+of installing that plugin or cloning the repository from source.  Then you can cd into
+the directory and run `vagrant up` as normal.
+
 ### Dependencies
 
 You must have [Vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org/)
 installed first. 
 If they are already installed, **update Vagrant and Virtualbox** before you continue.
 
-The puppet dependencies are managed via
-[librarian-puppet](https://github.com/rodjek/librarian-puppet) which can
-automatically be managed for you if you install the
+The puppet modules and their dependencies are managed via the
+[librarian-puppet](https://github.com/rodjek/librarian-puppet) gem, 
+which requires additional dependency gems puppet, facter, and hiera.
+
+Automatically manage puppet modules and their dependencies if you install the 
 [vagrant-librarian-puppet](https://github.com/mhahn/vagrant-librarian-puppet) vagrant plugin.
 
-Complete instructions below:
+### Automated Install Instructions
+Run the included `install.sh` script from inside your cloned repository. 
+(sudo access is required to install puppet and dependencies)
+
+````bash
+./install.sh
+````
+
+### Manual Install Instructions
 
 ````bash
 sudo gem install puppet facter hiera librarian-puppet --no-document
@@ -49,22 +73,22 @@ cd myvm
 librarian-puppet install
 vagrant up
 ````
-You should now have a working Virtual Server! Create a new Drupal site by running `drush fetcher-create yoursite`
-(add the version of drupal as a second argument if you want Drupal 8!). Run `vagrant ssh` to get
-into your VM.
+You should now have a working Zivtech Development Virtual Machine! 
 
-**_NOTE FOR WINDOWS USERS:_** There are known issues with getting `librarian-puppet`
-installed and running on windows and so for Windows users it is recommended that you
-**DO NOT** follow the installation instructions below but instead download the
-most recent full release via zip file from the
-[releases page](https://github.com/zivtech/vagrant-development-vm/releases) instead
-of installing that plugin or cloning the repository from source.  Then you can cd into
-the directory and run vagrant up as normal.
+Run `vagrant ssh` to get into your Dev VM.
 
-## Customizing this VM <a name="customizing"></a>
+Create a new Drupal site by running `drush fetcher-create yoursite`. 
+Add the version of drupal as a second argument if you want a site other 
+than the current version of Drupal.
 
-Once this repository have been downloaded, running "vagrant up" from within this
-directory will build the virtual server and provision it.  Two different categories
+````bash
+drush fetcher-create yoursite 7
+````
+
+## Customizing this VM
+
+Once you have followed the [Installation](#installation) steps, running `vagrant up` from within this
+clone repository will build the virtual server and provision it.  Two different categories
 of customizations can be performed on the dev vm. First there are vagrant settings
 such as Ubuntu version, local IP address, amount of RAM,
 hostname, etc. The second are tunables in the virtual server configuration.
@@ -76,9 +100,11 @@ a new file called `config.yaml` where you can define any value listed below
 (see [default.config.yaml](https://github.com/zivtech/vagrant-development-vm/blob/master/default.config.yaml)
 for formatting options.
 
-- *hostname*: The hostname that gets set inside the VM. Defaults to `vm`.
+- *hostname*: The hostname that gets set inside the VM. Defaults to `local.zivtech.com`. 
+(Apache Virtual Hosts are available at *.local.zivtech.com.)
 - *private_ipv4*: The private IP to provision for this host. Defaults to `172.16.0.2`.
-- *box*:The base box to use to build the puppet work on top of. Defaults to `zivtech/ubuntu-16.04-server-puppet-4`
+- *box*:The base box to use to build the puppet work on top of. 
+Defaults to `zivtech/ubuntu-16.04-server-puppet-4`
 - *memory*: The amount of memory (in megabytes) to provision. Defaults to `2048`.
 - *sync_folder*: Set this to false in order to not mount the www folder in this
 directory *inside* `/var/www` on the VM. Defaults to true.
@@ -99,16 +125,22 @@ overrides needed by this project or settings listed there for your easy referenc
 tuning the VM.
 
 #### Fetcher Server Configuration
-If you use a Fetcher Server, set its url as 'info_fetcher.config' 'host' in your hiera/custom.yaml file. See hiera/common.yaml.
+If you use a [Fetcher Services](https://www.drupal.org/project/fetcher_services) server, 
+set it's url as `'info_fetcher.config' 'host'` in your hiera/custom.yaml file. 
+See [hiera/common.yaml](https://github.com/zivtech/vagrant-development-vm/blob/master/hiera/common.yaml).
 
 ## Common Issues
 
 On non-windows host systems, Vagrant tries to mount a shared NFS directory to the host
 machine (the physical computer). This has been known to fail in some cases. If you
-receive errors about a failed mount remove the virtual machine with "vagrant destroy"
+receive errors about a failed mount remove the virtual machine with `vagrant destroy`
 then create or edit a `config.yaml` file in the root of this project and add the
 following line:
 
 ```` yaml
 sync_folder: false
 ````
+
+## Reporting Issues
+
+[Zivtech](https://www.zivtech.com/) uses this project actively to develop websites and web applications. Found an issue? Please search the [issue queue](https://github.com/zivtech/vagrant-development-vm/issues) and report it. [Pull Requests](https://github.com/zivtech/vagrant-development-vm/pulls) are welcome.
