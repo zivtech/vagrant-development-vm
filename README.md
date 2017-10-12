@@ -16,7 +16,21 @@ Ubuntu 16.04 server.  See [#customizing](Customizing This VM below).
 
 ## Installation
 
+### Special note for macOS > 10.12 (Sierra)
+
+Because Apple switched to the Apple Filesystem (APFS) format, NFS syncing will not correctly work. [You can follow the issue on Vagrant's Github issue tracker](https://github.com/hashicorp/vagrant/issues/8788).
+
+Until a solution comes from vagrant, or a more workable solution is found on our end, we recommend using a separate disk image for running the VM. To set that up:
+
+1. Open Disk Utility, and create a new image by selecting File > New Image > Blank Image.
+1. Name the image as you wish, though a single string name will be less annoying for you later. Format it to Mac OS Extended (Journaled). *Not* case-sensitive and *not* APFS! The size should be at minimum 80GB, as that is the virtual size of our VM here.
+1. Once the image is created, it should be automatically mounted.
+1. You can now cd to your mounted image, which should be located at `/Volumes/YOUR_IMAGE_NAME`.
+
+At this point, you can continue your install using the directions below.
+
 ### Dependencies
+
 You must have [Vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org/)
 installed first. 
 If they are already installed, **update Vagrant and Virtualbox** before you continue.
