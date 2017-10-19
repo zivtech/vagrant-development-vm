@@ -68,6 +68,7 @@ class vagrant_vm {
   include terminus
   include redis
   include mailhog
+  include wp_cli
 
   file { '/home/vagrant/.my.cnf':
     content => "[client]\nuser=root\nhost=localhost\npassword='${mysql::server::root_password}'\n",
