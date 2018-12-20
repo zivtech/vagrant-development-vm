@@ -45,7 +45,8 @@ class vagrant_vm {
   include mysql::server
 
   include drupal_php
-  include drupal_solr
+  # todo: update drupal_solr
+  #include drupal_solr
 
   include drush
   include drush_fetcher
