@@ -69,6 +69,7 @@ class vagrant_vm {
   include redis
   include mailhog
   include wp_cli
+  include nvm
 
   file { '/home/vagrant/.my.cnf':
     content => "[client]\nuser=root\nhost=localhost\npassword='${mysql::server::root_password}'\n",
@@ -80,12 +81,6 @@ class vagrant_vm {
 
   package { 'git-sh':
     ensure => 'installed',
-  }
-
-  class { 'nodejs': }->
-  file { '/usr/bin/node':
-    ensure => 'link',
-    target => '/usr/bin/nodejs'
   }
 }
 
