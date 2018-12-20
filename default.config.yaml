@@ -9,6 +9,7 @@ private_ipv6: "2400:cb00:2049:1::a29f:1a63"
 # Change the version number in the line below (or override in config.yaml)
 # to switch Ubuntu versions.
 box: "zivtech/ubuntu-16.04-server-puppet-4"
+box_version: "1.0"
 # The amount of memory (in megabytes) to provision.
 memory: "2048"
 cpus: 2

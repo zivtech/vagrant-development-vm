@@ -39,6 +39,7 @@ Vagrant.configure('2') do |config|
 
   config.vm.box = params['box']
   config.vm.box_url = params['box_url']
+  config.vm.box_version = params['box_version']
 
   config.ssh.forward_agent = true
 
