@@ -8,10 +8,9 @@ mod 'puppetlabs-vcsrepo'
 mod 'puppetlabs-mysql'
 mod 'puppetlabs-gcc'
 mod 'puppetlabs-apt'
-mod 'puppetlabs-nodejs', '0.8.0'
-mod 'puppet-php', '4.0.0'
+mod 'puppet-php'
 
-mod 'maestrodev-wget'
+mod 'puppetlabs-wget'
 
 mod 'saz-memcached'
 mod 'rodjek-logrotate'

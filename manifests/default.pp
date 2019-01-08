@@ -46,7 +46,7 @@ class vagrant_vm {
 
   include drupal_php
   # todo: update drupal_solr
-  #include drupal_solr
+  include drupal_solr
 
   include drush
   include drush_fetcher
@@ -69,7 +69,6 @@ class vagrant_vm {
   include terminus
   include redis
   include mailhog
-  include wp_cli
   include nvm
 
   file { '/home/vagrant/.my.cnf':
