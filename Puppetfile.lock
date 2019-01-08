@@ -14,8 +14,9 @@ FORGE
     puppetlabs-apache (3.5.0)
       puppetlabs-concat (< 6.0.0, >= 2.2.1)
       puppetlabs-stdlib (< 6.0.0, >= 4.13.1)
-    puppetlabs-apt (5.0.1)
-      puppetlabs-stdlib (< 5.0.0, >= 4.16.0)
+    puppetlabs-apt (6.2.1)
+      puppetlabs-stdlib (< 6.0.0, >= 4.16.0)
+      puppetlabs-translate (< 2.0.0, >= 1.0.0)
     puppetlabs-concat (5.2.0)
       puppetlabs-stdlib (< 6.0.0, >= 4.13.1)
       puppetlabs-translate (< 2.0.0, >= 1.0.0)
@@ -25,12 +26,11 @@ FORGE
       puppetlabs-stdlib (< 5.0.0, >= 2.0.0)
     puppetlabs-git (0.5.0)
       puppetlabs-stdlib (>= 3.2.0)
-    puppetlabs-inifile (2.4.0)
+    puppetlabs-inifile (2.5.0)
+      puppetlabs-translate (< 2.0.0, >= 1.0.0)
     puppetlabs-mysql (7.0.0)
       puppetlabs-stdlib (< 6.0.0, >= 3.2.0)
       puppetlabs-translate (< 2.0.0, >= 1.0.0)
-    puppetlabs-nodejs (0.8.0)
-      puppetlabs-stdlib (< 5.0.0, >= 2.2.1)
     puppetlabs-stdlib (4.25.1)
     puppetlabs-translate (1.2.0)
     puppetlabs-vcsrepo (2.4.0)
@@ -38,31 +38,58 @@ FORGE
     saz-memcached (3.3.0)
       puppetlabs-firewall (< 2.0.0, >= 0.1.0)
       puppetlabs-stdlib (< 6.0.0, >= 4.13.1)
-    zivtech-drupal_php (5.0.1)
-      puppet-php (>= 4.0.0)
-      puppetlabs-apache (>= 1.10.0)
-      puppetlabs-stdlib (>= 1.0.0)
-    zivtech-drush (1.4.0)
-      puppetlabs-concat (>= 1.0.0)
-      puppetlabs-stdlib (>= 1.0.0)
-      puppetlabs-vcsrepo (>= 0.0.0)
-      zivtech-drupal_php (>= 3.4.1)
     zivtech-drush_fetcher (1.0.3)
       puppetlabs-stdlib (>= 1.0.0)
       zivtech-drush (>= 0.0.0)
 
+GIT
+  remote: git://github.com/zivtech/puppet-webadmin.git
+  ref: feature/ubuntu-1804
+  sha: 57bfcd6d5b7bcc72b48e208ca172e7f83edcd59f
+  specs:
+    zivtech-webadmin (0.0.1)
+
+GIT
+  remote: git@github.com:zivtech/puppet-drupal-php.git
+  ref: feature/1804-support
+  sha: af4d5dc85e9298fc27bc59a39e3d73d9d41fa33f
+  specs:
+    zivtech-drupal_php (5.0.1)
+      puppet-php (>= 4.0.0)
+      puppetlabs-apache (>= 1.10.0)
+      puppetlabs-stdlib (>= 1.0.0)
+
+GIT
+  remote: git@github.com:zivtech/puppet-drupal-solr.git
+  ref: feature/1804-support
+  sha: db8e02e34048b1890d3099bbdbf2742d6eb89b12
+  specs:
+    zivtech-drupal_solr (4.0.1)
+
+GIT
+  remote: git@github.com:zivtech/puppet-drush.git
+  ref: feature/concat-module-updates
+  sha: 817e8b2d2ef864f3df3936f326ab66b95dc767a7
+  specs:
+    zivtech-drush (1.4.0)
+      puppetlabs-concat (>= 1.0.0)
+      puppetlabs-stdlib (>= 1.0.0)
+      puppetlabs-vcsrepo (>= 0)
+      zivtech-drupal_php (>= 3.4.1)
+
 DEPENDENCIES
-  puppet-php (= 6.0.2)
+  puppet-php (>= 0)
   puppet-wget (>= 0)
-  puppetlabs-apt (= 5.0.1)
+  puppetlabs-apt (>= 0)
   puppetlabs-gcc (>= 0)
   puppetlabs-git (>= 0)
   puppetlabs-mysql (>= 0)
-  puppetlabs-nodejs (= 0.8.0)
   puppetlabs-vcsrepo (>= 0)
   rodjek-logrotate (>= 0)
   saz-memcached (>= 0)
   zivtech-drupal_php (>= 0)
-  zivtech-drush (= 1.4.0)
+  zivtech-drupal_solr (>= 0)
+  zivtech-drush (>= 0)
   zivtech-drush_fetcher (>= 0)
+  zivtech-webadmin (>= 0)
 
