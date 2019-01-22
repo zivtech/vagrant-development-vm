@@ -9,9 +9,19 @@ drupal_php::max_execution_time_server: 30
 drupal_php::memory_limit_server: 256M
 drupal_php::post_max_size: '8M'
 drupal_php::server::apache::mpm_module: event
+drupal_php::server::apache::default_vhost_docroot_owner: 501
+drupal_php::server::apache::default_vhost_docroot_group: 'dialout'
 drupal_php::timezone: 'UTC'
 drupal_php::upload_max_filesize: 200M
-php::globals::php_version: '7.1'
+nvm::node_versions:
+  -
+    alias: default
+    version: '8.12.0'
+nvm::users:
+  -
+    name: "%{::webadmin::webadminuser}"
+    home: "/home/%{::webadmin::webadminuser}"
+php::globals::php_version: '7.2'
 php::package_prefix: 'php%{::php::globals::php_version}-'
 drush_patchfile::git_ref: '642394617e494ccdc81f2319ca5d2266df1c58e4'
 drush::configs:
