@@ -1,5 +1,9 @@
 class mailhog {
 
+$php_version = lookup('php::globals::php_version')
+$php_version_fpm = "php${php_version}-fpm"
+$php_path = "/etc/php/${php_version}/fpm/php.ini"
+
   package { 'postfix':
     ensure => 'absent',
   }->
@@ -67,13 +71,13 @@ class mailhog {
 
   file_line { 'mhsendmail php.ini':
     ensure  => present,
-    path    => '/etc/php/7.1/fpm/php.ini',
+    path    => $php_path,
     line    => 'sendmail_path = /usr/local/bin/mhsendmail',
     match   => '^;?sendmail_path',
     require => Class['drupal_php::fpm'],
     notify  => [
       Service['httpd'],
-      Service['php7.1-fpm'],
+      Service[$php_version_fpm],
       Class['::php::fpm::service'],
     ],
   }
