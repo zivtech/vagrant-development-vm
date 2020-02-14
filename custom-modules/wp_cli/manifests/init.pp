@@ -5,7 +5,6 @@ class wp_cli {
     destination => '/usr/local/bin/wp',
     timeout     => 0,
     verbose     => false,
-    source_hash => '179fc8dacbfe3ebc2d00ba57a333c982',
   }->
 
   file { '/usr/local/bin/wp':
